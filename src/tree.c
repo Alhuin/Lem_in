@@ -6,14 +6,12 @@
 /*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/24 15:33:34 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/04/24 18:54:20 by jjanin-r    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/04/24 21:45:16 by nbettach    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/lemin.h"
-
-int		g_pass = 0;
 
 int		ft_createnode(t_lem *e, t_room **room, t_forest **tocreate)
 {
@@ -54,37 +52,52 @@ int			ft_addnode(t_lem *e, t_room **room, t_forest **tree)
 	return (0);
 }
 
-void		ft_exfloor(int k, t_lem *e)
-{
-	int		i;
-	int		j;
-
-	i = 0;
-	j = 0;
-	while (e->matrix[k][i])
-		i++;
-	if (!k || k == e->nb_room - 1)
-		e->sorted[k] = malloc(sizeof(int) * j);
-	else
-		e->sorted[k] = malloc(sizeof(int) * (j - 1));
-
-	while ()
-	{
-	
-	}
-
-}
-
 
 void		ft_addfloor(t_lem *e)
 {
 	int		i;
+	int		j;
+	int		k;
+	int		pass;
+	int		size_mlc;
+	int		tmp;
 
-	e->sorted = malloc(sizeof(int) * (e->nb_room - 1));
 	i = 0;
-	while (g_pass < e->nb_room)
+	pass = 2;
+	e->sorted = malloc(sizeof(int) * 1);
+	while (pass < e->nb_room)
 	{
-		ft_exfloor(i, e);
+		if (e->sorted == NULL)
+		{
+			e->sorted = malloc(sizeof(int*));
+			e->sorted[0] = ft_strdup(e->data[e->end].links); // STRDUP INT
+			pass += e->data[e->end].nb_links;
+		}
+		else
+		{
+			e->sorted = ft_realloc(e->sorted, sizeof(int*) * i, sizeof(int*) * (i + 1));
+			size_mlc = 0;
+			j = 0;
+			while (j < ft_strlen(e->saved[i - 1])) //STRLEN INT
+			{
+				tmp = e->saved[i - 1][j];
+				k = 0;
+				while (k < ft_strlen(e->data[tmp].links))
+				{
+
+					k++;
+				}
+				j++;
+			}
+			e->sorted[i] = malloc(sizeof(int) * size_mlc);
+			j = 0;
+			while (j < size_mlc)
+			{
+				s->sorted[i][j] = ;
+				j++;
+			}
+			pass += ft_strlen(e->sorted[i]); // STRLEN INT
+		}
 		i++;
 	}
 

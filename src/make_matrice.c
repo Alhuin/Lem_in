@@ -10,12 +10,12 @@ int		make_matrice(t_lem *e)
 	int		k;
 
 	i = -1;
-	if (!(e->matrix = malloc(sizeof(t_mat*) * e->nb_room)))
+	if (!(e->matrix = malloc(sizeof(int *) * e->nb_room)))
 		return (-1);
 	while (++i < e->nb_room)
 	{
 		j = -1;
-		if (!(e->matrix[i] = malloc(sizeof(t_mat) * e->nb_room)))
+		if (!(e->matrix[i] = malloc(sizeof(int) * e->nb_room)))
 			return (-1);
 		while (++j < e->nb_room)
 		{

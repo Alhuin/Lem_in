@@ -6,7 +6,7 @@
 /*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/20 11:51:16 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/04/20 13:37:27 by jjanin-r    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/04/24 15:54:11 by jjanin-r    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -74,6 +74,10 @@ int			ft_init_room(char *name, t_lem *e, int x, int y)
 	e->data[e->nb_room -1].nb_links = 0;
 	e->data[e->nb_room -1].dist_s = (e->start_end == 1 ? 0 : -1);
 	e->data[e->nb_room -1].dist_e = (e->start_end == 2 ? 0 : -1);
+	if (e->start_end == 1)
+		e->start = e->nb_room - 1;
+	if (e->start_end == 2)
+		e->end = e->nb_room - 1;
 	e->start_end = 0;
 	return (0);
 }

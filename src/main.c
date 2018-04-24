@@ -117,7 +117,6 @@ int main(void)
 	if (ft_parse(e) == -1 || ft_check_data(e) == -1)
 		return (ft_error(e));
 		make_matrice(e);
-	bfs(e, e->end);
 	ft_printf("%s", e->save);
 	//PRINT SOLUTIONS
 	//FREE TOUT

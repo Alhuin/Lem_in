@@ -4,6 +4,9 @@
 # include "../libft/ft_printf.h"
 # include <fcntl.h>
 
+
+struct	s_forest;
+
 typedef struct	s_mat
 {
 	int			l;
@@ -22,6 +25,13 @@ typedef struct s_room
 	int			dist_e;
 }				t_room;
 
+typedef struct	s_forest
+{
+	struct s_room		*room;
+	struct s_forest		*parent;
+	struct s_forest		**subtree;
+}						t_forest;
+
 typedef struct	s_lem
 {
 	int			nb_ants;
@@ -35,7 +45,8 @@ typedef struct	s_lem
 	int			total_nb_links;
 	int			error;
 	int			room;
-	t_mat		**matrix;
+	int			**sorted;
+	int			**matrix;
 	t_room		*data;
 }				t_lem;
 

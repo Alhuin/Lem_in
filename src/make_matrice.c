@@ -1,8 +1,38 @@
+/* ************************************************************************** */
+/*                                                          LE - /            */
+/*                                                              /             */
+/*   make_matrice.c                                   .::    .:/ .      .::   */
+/*                                                 +:+:+   +:    +:  +:+:+    */
+/*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
+/*                                                 #+#   #+    #+    #+#      */
+/*   Created: 2018/04/25 00:17:28 by jjanin-r     #+#   ##    ##    #+#       */
+/*   Updated: 2018/04/25 00:43:38 by jjanin-r    ###    #+. /#+    ###.fr     */
+/*                                                         /                  */
+/*                                                        /                   */
+/* ************************************************************************** */
+
 #include "../includes/lemin.h"
 
-void	print_matrix(t_lem *e);
+static void		print_matrix(t_lem *e)
+{
+	int		i;
+	int		j;
 
-int		make_matrice(t_lem *e)
+	i = 0;
+	while (i < e->nb_room)
+	{
+		j = 0;
+		while (j < e->nb_room)
+		{
+			ft_printf("%d ", e->matrix[i][j]);
+			j++;
+		}
+		ft_printf("\n");
+		i++;
+	}
+}
+
+int				make_matrice(t_lem *e)
 {
 	int		i;
 	int		j;
@@ -24,28 +54,9 @@ int		make_matrice(t_lem *e)
 			while (++k < e->data[j].nb_links)
 				if (e->data[j].links[k] == i)
 					f = 1;
-				e->matrix[i][j].l = (f == 1 ? 1 : 0);
+			e->matrix[i][j] = (f == 1 ? 1 : 0);
 		}
 	}
 	print_matrix(e);
 	return (0);
-}
-
-void	print_matrix(t_lem *e)
-{
-	int		i;
-	int		j;
-
-	i = 0;
-	while (i < e->nb_room)
-	{
-		j = 0;
-		while(j < e->nb_room)
-		{
-			ft_printf("%d ", e->matrix[i][j]);
-			j++;
-		}
-		ft_printf("\n");
-		i++;
-	}
 }

@@ -6,14 +6,14 @@
 #    By: nbettach <marvin@le-101.fr>                +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/03/17 13:51:41 by nbettach     #+#   ##    ##    #+#        #
-#    Updated: 2018/03/17 16:12:43 by nbettach    ###    #+. /#+    ###.fr      #
+#    Updated: 2018/04/25 00:34:47 by jjanin-r    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
 
 NAME = lem-in
 INC = ./includes
-LEMIN = main.c read_ants.c read_links.c make_matrice.c
+LEMIN = main.c read_ants.c read_links.c make_matrice.c free.c utils.c
 SRC = $(addprefix ./src/, $(LEMIN))
 OBJ = $(SRC:.c=.o)
 

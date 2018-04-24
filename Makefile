@@ -13,7 +13,7 @@
 
 NAME = lem-in
 INC = ./includes
-LEMIN = main.c read_ants.c read_links.c
+LEMIN = main.c read_ants.c read_links.c make_matrice.c
 SRC = $(addprefix ./src/, $(LEMIN))
 OBJ = $(SRC:.c=.o)
 

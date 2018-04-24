@@ -22,7 +22,7 @@ int			ft_parse(t_lem *e)
 	int		i;
 	int		j;
 
-	while (get_next_line(0, &e->line) > 0)
+	while (get_next_line(0, &e->line))
 	{
 		e->room = 0;
 		if (e->line[0] == '#')
@@ -38,7 +38,7 @@ int			ft_parse(t_lem *e)
 		{
 			if (ft_check_room_name(e, t[0], 1) == -1)
 			{
-				dprintf(2, "t[0] = %s\n", t[0]);
+			//	dprintf(2, "t[0] = %s\n", t[0]);
 				return (-1);
 			}
 			if (ft_check_room_coord(e, ft_atoi(t[1]), ft_atoi(t[2])) == -1)
@@ -68,7 +68,7 @@ int			ft_parse(t_lem *e)
 		else
 			return (-1);
 		e->save = ft_strjoin(ft_strjoin(e->save, e->line, 2), "\n", 1);
-		dprintf(2, "save = %s\n", e->save);
+	//	dprintf(2, "save = %s\n", e->save);
 	}
 	return (0);
 }
@@ -81,10 +81,10 @@ int			ft_check_data(t_lem *e)
 
 	end = 0;
 	start = 0;
-	i = 0;
+	i = -1;
 	if (e->nb_room == 0)
 		return (-1);
-	while (i < e->nb_room)
+	while (++i < e->nb_room)
 	{
 		if (e->data[i].dist_s == 0)
 			start++;
@@ -111,9 +111,15 @@ int main(void)
 	e->total_nb_links = 0;
 	e->error = 0;
 	e->room = 0;
+	e->start = 0;
+	e->end = 0;
 
 	if (ft_parse(e) == -1 || ft_check_data(e) == -1)
 		return (ft_error(e));
-	//ALGO
+		make_matrice(e);
+	bfs(e, e->end);
+	ft_printf("%s", e->save);
+	//PRINT SOLUTIONS
+	//FREE TOUT
 	return (0);
 }

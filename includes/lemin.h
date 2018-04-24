@@ -4,6 +4,13 @@
 # include "../libft/ft_printf.h"
 # include <fcntl.h>
 
+typedef struct	s_mat
+{
+	int			l;
+	int			value;
+	int			stone;
+}				t_mat;
+
 typedef struct s_room
 {
 	char		*name;
@@ -19,14 +26,16 @@ typedef struct	s_lem
 {
 	int			nb_ants;
 	int			nb_room;
+	int			start;
+	int			end;
 	char		*line;
 	char		*save;
-	char		**equiv;
 	int			start_end;
 	int			stop;
 	int			total_nb_links;
 	int			error;
 	int			room;
+	t_mat		**matrix;
 	t_room		*data;
 }				t_lem;
 
@@ -40,5 +49,7 @@ int				ft_parse(t_lem *e);
 int				ft_error(t_lem *e);
 char			**ft_get_links(t_lem *e);
 int				ft_init_links(t_lem *e, int i, int j);
+int				make_matrice(t_lem *e);
+void			bfs(t_lem *e, int ind);
 
 #endif

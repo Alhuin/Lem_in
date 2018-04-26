@@ -6,7 +6,7 @@
 /*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/25 00:15:42 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/04/26 13:27:09 by nbettach    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/04/26 13:45:30 by jjanin-r    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -75,5 +75,6 @@ int				ft_init_links(t_lem *e, int i, int j);
 int				make_matrice(t_lem *e);
 void			bfs(t_lem *e, int ind);
 void			free_env(t_lem **e);
+void			ft_intdel(int **as);
 
 #endif

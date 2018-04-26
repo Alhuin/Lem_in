@@ -6,17 +6,20 @@
 /*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/24 20:29:21 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/04/25 16:08:28 by jjanin-r    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/04/26 13:50:48 by jjanin-r    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/lemin.h"
 
-static void		ft_intdel(int **as)
+void			ft_intdel(int **as)
 {
 	if (as && *as)
+	{
 		free(*as);
+		(*as) = NULL;
+	}
 }
 
 static void		free_node(t_forest **node)

@@ -6,7 +6,7 @@
 /*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/25 00:17:28 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/04/26 13:27:07 by nbettach    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/04/26 14:30:00 by jjanin-r    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,13 +24,92 @@ void		swap_matrix(t_lem *e, int a, int b)
 	e->matrix[b] = tmp;
 }
 
-void		swap_data(t_lem *e, int a, int b)
+void			data_cpy(int a, int b, t_room *tmp, t_lem *e)
 {
+	int i;
+
+	i = -1;
+	tmp[b].name = ft_strdup(e->data[a].name);
+	tmp[b].links = malloc(sizeof(int) * e->data[a].nb_links);
+	while (++i < e->data[a].nb_links)
+		tmp[b].links[i] = e->data[a].links[i];
+	tmp[b].room_x = e->data[a].room_x;
+	tmp[b].room_y = e->data[a].room_y;
+	tmp[b].nb_links = e->data[a].nb_links;
+	tmp[b].dist_s = e->data[a].dist_s;
+	tmp[b].dist_e = e->data[a].dist_e;
+}
+void			rev_data_cpy(int a, int b, t_room *tmp, t_lem *e)
+{
+	int i;
+
+	i = -1;
+	e->data[b].name = ft_strdup(tmp[a].name);
+	e->data[b].links = malloc(sizeof(int) * tmp[a].nb_links);
+	while (++i < tmp[a].nb_links)
+		e->data[b].links[i] = tmp[a].links[i];
+	e->data[b].room_x = tmp[a].room_x;
+	e->data[b].room_y = tmp[a].room_y;
+	e->data[b].nb_links = tmp[a].nb_links;
+	e->data[b].dist_s = tmp[a].dist_s;
+	e->data[b].dist_e = tmp[a].dist_e;
+}
+
+int			swap_data(t_lem *e, int a, int b)
+{
+//	int i;
+
+//	i = -1;
 	t_room		*tmp;
 
-	tmp = &(e->data[a]);
-	e->data[a] = e->data[b];
-	e->data[b] = *tmp;
+/*	dprintf(2, "A\ndata name =  %s\n", e->data[a].name);
+	dprintf(2, "data room_x =  %d\n", e->data[a].room_x);
+	dprintf(2, "data room_y =  %d\n", e->data[a].room_y);
+	while (++i < e->data[a].nb_links)
+		dprintf(2, "links[%d] =  %d\n", i, e->data[a].links[i]);
+	i = -1;
+	dprintf(2, "data nb_links =  %d\n", e->data[a].nb_links);
+	dprintf(2, "data dist_s =  %d\n", e->data[a].dist_s);
+	dprintf(2, "data dist_e =  %d\n", e->data[a].dist_e);
+	dprintf(2, "\nB\ndata name =  %s\n", e->data[b].name);
+	dprintf(2, "data room_x =  %d\n", e->data[b].room_x);
+	dprintf(2, "data room_y =  %d\n", e->data[b].room_y);
+	while (++i < e->data[b].nb_links)
+		dprintf(2, "links[%d] =  %d\n", i, e->data[b].links[i]);
+	i = -1;
+	dprintf(2, "data nb_links =  %d\n", e->data[b].nb_links);
+	dprintf(2, "data dist_s =  %d\n", e->data[b].dist_s);
+	dprintf(2, "data dist_e =  %d\n", e->data[b].dist_e);
+*/	if (!(tmp = malloc(sizeof(t_room) * e->nb_room)))
+		return (-1);
+	data_cpy(a, b, tmp, e); //cp data[a] dans tmp[b]
+	data_cpy(b, a, tmp, e); //cp data[b] dans tmp[a]
+	ft_strdel(&e->data[a].name);
+	ft_intdel(&e->data[a].links);
+	ft_intdel(&e->data[b].links);
+	ft_strdel(&e->data[b].name);
+	rev_data_cpy(a, a, tmp, e); //cp tmp[a] dans data[a]
+	rev_data_cpy(b, b, tmp, e); //cp tmp[b] dans data[b]
+/*	dprintf(2, "\nSWAP\nA\ndata name =  %s\n", e->data[a].name);
+	dprintf(2, "data room_x =  %d\n", e->data[a].room_x);
+	dprintf(2, "data room_y =  %d\n", e->data[a].room_y);
+	while (++i < e->data[a].nb_links)
+		dprintf(2, "links[%d] =  %d\n", i, e->data[a].links[i]);
+	i = -1;
+	dprintf(2, "data nb_links =  %d\n", e->data[a].nb_links);
+	dprintf(2, "data dist_s =  %d\n", e->data[a].dist_s);
+	dprintf(2, "data dist_e =  %d\n", e->data[a].dist_e);
+	dprintf(2, "\nB\ndata name =  %s\n", e->data[b].name);
+	dprintf(2, "data room_x =  %d\n", e->data[b].room_x);
+	dprintf(2, "data room_y =  %d\n", e->data[b].room_y);
+	while (++i < e->data[b].nb_links)
+		dprintf(2, "links[%d] =  %d\n", i, e->data[b].links[i]);
+	i = -1;
+	dprintf(2, "data nb_links =  %d\n", e->data[b].nb_links);
+	dprintf(2, "data dist_s =  %d\n", e->data[b].dist_s);
+	dprintf(2, "data dist_e =  %d\n", e->data[b].dist_e);
+*/
+	return (0);
 }
 
 static void		print_matrix(t_lem *e)
@@ -148,7 +227,7 @@ int		sort_matrix(t_lem *e)
 	//TRIER DATA[i]
 	i = -1;
 	while (++i < e->nb_room)
-		if (i == equiv[i])
+		if (i != equiv[i])
 			swap_data(e, i, equiv[i]);
 	return (0);
 }
@@ -198,7 +277,5 @@ int		make_matrice(t_lem *e)
 	make_matricei_suit(e);
 	print_matrix(e);
 	ft_printf("\n");
-
-
 	return (0);
 }

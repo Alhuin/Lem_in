@@ -6,7 +6,7 @@
 /*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/24 20:29:21 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/04/26 13:50:48 by jjanin-r    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/04/26 17:22:49 by jjanin-r    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -57,7 +57,6 @@ void			free_env(t_lem **e)
 	int i;
 
 	i = -1;
-//	free_tree((*e)->tree);			arbre a ajouter dans la structure
 	free((*e)->data);
 	ft_strdel(&(*e)->line);
 	ft_strdel(&(*e)->save);

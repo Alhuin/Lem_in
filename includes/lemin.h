@@ -6,7 +6,7 @@
 /*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/25 00:15:42 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/04/26 13:45:30 by jjanin-r    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/04/26 17:42:12 by jjanin-r    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -76,5 +76,17 @@ int				make_matrice(t_lem *e);
 void			bfs(t_lem *e, int ind);
 void			free_env(t_lem **e);
 void			ft_intdel(int **as);
+int				data_sort(t_lem *e, int *equiv);
+void			data_scan(t_lem *e, int *equiv);
 
+//-----------------------------------------------------------------------------
+//								A DEGAGER									   
+//-----------------------------------------------------------------------------
+void			swap_matrix(t_lem *e, int a, int b);
+void			print_matrix(t_lem *e);
+void			print_equiv(t_lem *e, int *equiv);
+void			print_datalinks(t_lem *e);
+int				sort_matrix(t_lem *e);
+int				make_matricei_suit(t_lem *e);
+int				make_matrice(t_lem *e);
 #endif

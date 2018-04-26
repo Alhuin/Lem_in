@@ -6,7 +6,7 @@
 /*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/25 00:17:28 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/04/26 14:30:00 by jjanin-r    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/04/26 16:18:42 by nbettach    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -166,6 +166,7 @@ int		sort_matrix(t_lem *e)
 	int		i;
 	int		j;
 	int		k;
+	int		tmp;
 	int		tour;
 	int		equiv[e->nb_room];
 
@@ -227,8 +228,27 @@ int		sort_matrix(t_lem *e)
 	//TRIER DATA[i]
 	i = -1;
 	while (++i < e->nb_room)
+	{
+		j = -1;
 		if (i != equiv[i])
-			swap_data(e, i, equiv[i]);
+		{
+			while (++j < e->nb_room)
+				if (i == equiv[j])
+					break;
+			printf("i = %d j = %d\n", i, j);
+			if (j < e->nb_room)
+			{
+				swap_data(e, i, j);
+				tmp = i;
+				equiv[i] = j;
+				equiv[j] = i;
+			}
+			else
+				printf("jump\n");
+		}
+		print_datalinks(e);
+		print_equiv(e, equiv);
+	}
 	return (0);
 }
 

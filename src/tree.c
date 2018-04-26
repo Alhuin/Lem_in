@@ -6,7 +6,7 @@
 /*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/24 15:33:34 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/04/24 21:45:16 by nbettach    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/04/24 22:37:52 by nbettach    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -61,11 +61,12 @@ void		ft_addfloor(t_lem *e)
 	int		pass;
 	int		size_mlc;
 	int		tmp;
+	int		tmp2;
 
 	i = 0;
 	pass = 2;
 	e->sorted = malloc(sizeof(int) * 1);
-	while (pass < e->nb_room)
+	while (pass < e->nb_room)// STOP AVEC EULEMT LA FIN
 	{
 		if (e->sorted == NULL)
 		{
@@ -78,18 +79,21 @@ void		ft_addfloor(t_lem *e)
 			e->sorted = ft_realloc(e->sorted, sizeof(int*) * i, sizeof(int*) * (i + 1));
 			size_mlc = 0;
 			j = 0;
-			while (j < ft_strlen(e->saved[i - 1])) //STRLEN INT
+			//TROUVER LONGUEUR POUR MALLOC E->SORTED[i]
+			while (j < ft_strlen(e->sorted[i - 1])) //STRLEN INT
 			{
-				tmp = e->saved[i - 1][j];
+				tmp = e->sorted[i - 1][j];//parent
 				k = 0;
-				while (k < ft_strlen(e->data[tmp].links))
+				while (k < ft_strlen(e->data[tmp].links)0)
 				{
-
+					if (k != tmp)
+						size_mlc++;
 					k++;
 				}
 				j++;
 			}
 			e->sorted[i] = malloc(sizeof(int) * size_mlc);
+			//REMPLIR E->SORTED[i]
 			j = 0;
 			while (j < size_mlc)
 			{

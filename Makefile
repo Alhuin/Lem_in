@@ -6,7 +6,7 @@
 #    By: nbettach <marvin@le-101.fr>                +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/03/17 13:51:41 by nbettach     #+#   ##    ##    #+#        #
-#    Updated: 2018/04/25 00:34:47 by jjanin-r    ###    #+. /#+    ###.fr      #
+#    Updated: 2018/04/25 22:37:25 by nbettach    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -21,7 +21,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	make -C libft
-	gcc -fsanitize=address -g -Wall -Wextra -Werror $(SRC) -L. libft/libftprintf.a -o $(NAME)
+	gcc  -Wall -Wextra -Werror $(SRC) -L. libft/libftprintf.a -o $(NAME)
 
 %.o : %.c
 	gcc -Wall -Werror -Wextra -o $@ -c $< -I $(INC)

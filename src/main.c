@@ -6,7 +6,7 @@
 /*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/25 00:29:45 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/04/25 00:42:55 by jjanin-r    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/04/25 13:43:24 by nbettach    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -109,8 +109,9 @@ int					main(void)
 	if (ft_parse(e, NULL) == -1 || ft_check_data(e) == -1)
 		return (ft_error(e));
 	make_matrice(e);
+	ft_printf("\n");
 	ft_printf("%s", e->save);
 	//PRINT SOLUTIONS
-	free_env(&e);
+	//free_env(&e);
 	return (0);
 }

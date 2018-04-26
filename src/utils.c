@@ -6,7 +6,7 @@
 /*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/25 00:34:01 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/04/25 00:42:32 by jjanin-r    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/04/25 16:05:31 by jjanin-r    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -39,6 +39,8 @@ int					init_env(t_lem **e)
 	(*e)->nb_room = 0;
 	(*e)->start_end = 0;
 	(*e)->total_nb_links = 0;
+	(*e)->matrix = NULL;
+	(*e)->sorted = NULL;
 	(*e)->error = 0;
 	(*e)->room = 0;
 	(*e)->start = 0;

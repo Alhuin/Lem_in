@@ -103,12 +103,25 @@ static int			ft_check_data(t_lem *e)
 int					main(void)
 {
 	t_lem	*e;
+	int		i;
+	int		j;
 
 	if (init_env(&e) == -1)
 		return (ft_error(e));
 	if (ft_parse(e, NULL) == -1 || ft_check_data(e) == -1)
 		return (ft_error(e));
 	make_matrice(e);
+	algo_main(e);
+	ft_printf("\n PATH MADE \n");
+	i = -1;
+	while (++i < e->data[e->nb_room - 1].nb_path)
+	{
+		j = -1;
+		ft_printf("PATH %d: ", i);
+		while (e->data[e->nb_room - 1].path[i][++j] != -1)
+			ft_printf("%d ",e->data[e->nb_room - 1].path[i][j]);
+		ft_printf("\n");
+	}
 	ft_printf("\n");
 	ft_printf("%s", e->save);
 	//PRINT SOLUTIONS

@@ -34,6 +34,8 @@ typedef struct	s_room
 	int			nb_links;
 	int			dist_s;
 	int			dist_e;
+	int			**path;
+	int			nb_path;
 }				t_room;
 
 typedef struct	s_forest
@@ -73,7 +75,7 @@ int				ft_error(t_lem *e);
 char			**ft_get_links(t_lem *e);
 int				ft_init_links(t_lem *e, int i, int j);
 int				make_matrice(t_lem *e);
-void			bfs(t_lem *e, int ind);
+int				algo_main(t_lem *e);
 void			free_env(t_lem **e);
 void			ft_intdel(int **as);
 int				data_sort(t_lem *e, int *equiv);

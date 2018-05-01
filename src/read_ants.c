@@ -72,6 +72,8 @@ int			ft_init_room(char *name, t_lem *e, int x, int y)
 	e->data[e->nb_room - 1].room_y = y;
 	e->data[e->nb_room - 1].links = NULL;
 	e->data[e->nb_room - 1].nb_links = 0;
+	e->data[e->nb_room - 1].path = NULL;
+	e->data[e->nb_room - 1].nb_path = 0;
 	e->data[e->nb_room - 1].dist_s = (e->start_end == 1 ? 0 : -1);
 	e->data[e->nb_room - 1].dist_e = (e->start_end == 2 ? 0 : -1);
 	if (e->start_end == 1)

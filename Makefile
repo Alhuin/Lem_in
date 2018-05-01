@@ -14,7 +14,7 @@
 NAME = lem-in
 INC = ./includes
 LEMIN = main.c read_ants.c read_links.c make_matrice.c free.c utils.c\
-		nassim_tools.c
+		nassim_tools.c algo.c
 SRC = $(addprefix ./src/, $(LEMIN))
 OBJ = $(SRC:.c=.o)
 

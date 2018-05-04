@@ -6,7 +6,7 @@
 /*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/25 00:29:45 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/04/25 13:43:24 by nbettach    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/03 17:15:24 by nbettach    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -122,7 +122,9 @@ int					main(void)
 			ft_printf("%d ",e->data[e->nb_room - 1].path[i][j]);
 		ft_printf("\n");
 	}
-	ft_printf("\n");
+	ft_printf("\n-------------\n");
+	algo_next(e);
+	ft_printf("\n-------------\n");
 	ft_printf("%s", e->save);
 	//PRINT SOLUTIONS
 	//free_env(&e);

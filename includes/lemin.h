@@ -6,7 +6,7 @@
 /*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/25 00:15:42 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/04 12:00:10 by nbettach    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/04 13:10:54 by nbettach    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -95,4 +95,5 @@ void			print_datalinks(t_lem *e);
 int				sort_matrix(t_lem *e);
 int				make_matricei_suit(t_lem *e);
 int				make_matrice(t_lem *e);
+void			ft_print_allpath(t_lem *e);
 #endif

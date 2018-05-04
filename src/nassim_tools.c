@@ -6,7 +6,7 @@
 /*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/26 17:34:13 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/04/26 17:44:02 by jjanin-r    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/04 13:07:55 by nbettach    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -144,4 +144,20 @@ int make_matrice(t_lem *e)
 	make_matricei_suit(e);
 	print_matrix(e);
 	return (0);
+}
+
+void	ft_print_allpath(t_lem *e)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i < e->nb_path)
+	{
+		j = -1;
+		ft_printf("ALL_PATH %d: ", i);
+		while (e->all_path[i][++j] != -1)
+			ft_printf("%d ",e->all_path[i][j]);
+		ft_printf("\n");
+	}
 }

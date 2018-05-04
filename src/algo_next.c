@@ -108,20 +108,67 @@ int		ft_add_s(t_lem *e, int j)
 	return (0);
 }
 
-int		check_double(t_lem *e)
+int		**final_path_poss(int **path, t_lem *e)
+{
+	int i;
+	int len;
+	int j;
+	int k;
+	int **tmp;
+
+	i = -1;
+	len = 0;
+	while (++i < e->nb_path)
+	{
+		if (path[i][0] != -1)
+			len++;
+	}
+	if (!(tmp = malloc(sizeof(int *) * len)))
+		return (NULL);
+		i = 0;
+		j = -1;
+	while (++j < len)
+	{
+		k = 0;
+		while (i < e->nb_path && path[i][0] == -1)
+			i++;
+		if (!(tmp[j] = malloc(sizeof(int) * (ft_inttablen(path[i]) + 1))))
+			return (NULL);
+		while (path[i][k] != -1)
+		{
+			tmp[i][k] = path[i][k];
+			k++;
+		}
+		tmp[i][k] = -1;
+	}
+	return (tmp);
+}
+
+int		**check_double(int **path, t_lem *e)
 {
 	int i;
 	int j;
+	int k;
 
-	i = 0;
-	j = 0;
-	while (i < e->nb_path)
+	i = -1;
+	while (++i < e->nb_path - 1)
 	{
-		if (ft_compare_path(e->all_path[i], e->all_path[i + 1]) == 1)
-			return (1);
-		i++;
+		j = i;
+		while (++j < e->nb_path)
+		{
+			k = 0;
+			if (ft_inttablen(path[i]) != ft_inttablen(path[j]))
+				continue ;
+			else
+			{
+				while (path[i][k] == path[j][k] && path[i][k] != -1 && path[j][k] != -1)
+					k++;
+				if (path[i][k] == -1 && path[j][k] == -1)
+					path[i][0] = -1;
+			}
+		}
 	}
-	return (0);
+	return (final_path_poss(path, e));
 }
 
 int		algo_next(t_lem *e)

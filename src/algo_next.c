@@ -6,7 +6,7 @@
 /*   By: nbettach <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/03 14:34:46 by nbettach     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/04 14:21:36 by nbettach    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/04 17:08:53 by nbettach    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -40,14 +40,14 @@ int		ft_compare_path(int *s1, int *s2)
 		{
 			if (s1[i] == s2[j])
 			{
-				//	printf("nop\n\n");
+					printf("nop\n\n");
 				return (1);
 			}
 			j++;
 		}
 		i++;
 	}
-	//	printf("yes\n\n");
+		printf("yes\n\n");
 	return (0);
 }
 
@@ -192,7 +192,7 @@ int		algo_next(t_lem *e)
 		tmp = 0;
 		while (++j < e->data[e->nb_room - 1].nb_path)
 		{
-			//	printf("i = %d - j = %d\n", i, j);
+				//printf("i = %d - j = %d\n", i, j);
 			if ((i == j) || !(ft_compare_path(e->data[e->nb_room - 1].path[i], e->data[e->nb_room - 1].path[j])))
 			{
 				if (tmp == 0)
@@ -205,8 +205,8 @@ int		algo_next(t_lem *e)
 					ft_printf("add j = %d\n", j);
 					ft_add_s(e, j);
 				}
+				tmp++;
 			}
-			tmp++;
 		}
 	}
 	ft_printf("\n------------\n\n");

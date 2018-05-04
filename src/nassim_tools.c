@@ -6,7 +6,7 @@
 /*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/26 17:34:13 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/04 13:07:55 by nbettach    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/04 15:25:17 by nbettach    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -159,5 +159,22 @@ void	ft_print_allpath(t_lem *e)
 		while (e->all_path[i][++j] != -1)
 			ft_printf("%d ",e->all_path[i][j]);
 		ft_printf("\n");
+	}
+}
+
+void	ft_print_path(t_lem *e, int j)
+{
+	int l;
+	int k;
+
+	k = -1;
+	dprintf(2, "\nDATA[%d]\n", j);
+	while (++k < e->data[j].nb_path)
+	{
+		l = -1;
+		dprintf(2, "PATH[%d] : ", k);
+		while (e->data[j].path[k][++l] != -1)
+			dprintf(2, "%d ", e->data[j].path[k][l]);
+		dprintf(2, "\n");
 	}
 }

@@ -6,12 +6,22 @@
 /*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/25 00:16:52 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/04/25 00:17:19 by jjanin-r    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/04 16:59:33 by nbettach    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/lemin.h"
+
+void	print_inttab(int *s1)
+{
+	int i;
+
+	i = -1;
+	while (s1[++i] != -1)
+		printf("%d ", s1[i]);
+	printf("\n");
+}
 
 int		ft_inttablen(int *tab)
 {
@@ -93,11 +103,21 @@ int		*ft_inttabadd(int *s1, int k)
 	return (new);
 }
 
-
-
 int		path_manage(t_lem *e, int i, int j)
 {
-	if (e->data[j].path == NULL)
+	int		y;
+
+	if (e->data[j].path == NULL && e->data[i].nb_path > 1)
+	{
+		if (!(e->data[j].path = malloc(sizeof(int*) * e->data[i].nb_path)))
+			return (-1);
+		e->data[j].nb_path += e->data[i].nb_path;
+		y = -1;
+		while (++y <  e->data[i].nb_path)
+			e->data[j].path[y] = NULL;
+		e->data[j].nb_path = e->data[i].nb_path;
+	}
+	else if (e->data[j].path == NULL)
 	{
 		if (!(e->data[j].path = malloc(sizeof(int*))))
 			return (-1);
@@ -110,7 +130,6 @@ int		path_manage(t_lem *e, int i, int j)
 								sizeof(int*) * (e->data[j].nb_path + e->data[i].nb_path))))
 				return (-1);
 		e->data[j].nb_path += e->data[i].nb_path;
-
 	}
 	return (0);
 }
@@ -127,7 +146,10 @@ int		path_copy(t_lem *e, int i, int j)
 		e->data[j].path[0][1] = -1;
 		return (0);
 	}
-	k = e->data[j].nb_path - e->data[i].nb_path;
+	if (e->data[j].nb_path == 1 && e->data[i].nb_path > e->data[j].nb_path)
+		k = 0;
+	else
+		k = e->data[j].nb_path - e->data[i].nb_path;
 	l = 0;
 	while (k < e->data[j].nb_path)
 	{
@@ -138,25 +160,6 @@ int		path_copy(t_lem *e, int i, int j)
 	}
 	return (0);
 }
-
-void	ft_print_path(t_lem *e, int j)
-{
-	int l;
-	int k;
-
-	k = -1;
-	dprintf(2, "\nDATA[%d]\n", j);
-	while (++k < e->data[j].nb_path)
-	{
-		l = -1;
-		dprintf(2, "PATH[%d] : ", k);
-		while (e->data[j].path[k][++l] != -1)
-			dprintf(2, "%d ", e->data[j].path[k][l]);
-		dprintf(2, "\n");
-	}
-
-}
-
 
 int		algo_main(t_lem *e)
 {

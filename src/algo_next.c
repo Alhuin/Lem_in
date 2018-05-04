@@ -6,7 +6,7 @@
 /*   By: nbettach <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/03 14:34:46 by nbettach     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/04 13:19:15 by nbettach    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/04 14:21:36 by nbettach    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -108,7 +108,7 @@ int		ft_add_s(t_lem *e, int j)
 	return (0);
 }
 
-int		**final_path_poss(int **path, t_lem *e)
+int		final_path_poss(t_lem *e)
 {
 	int i;
 	int len;
@@ -120,31 +120,38 @@ int		**final_path_poss(int **path, t_lem *e)
 	len = 0;
 	while (++i < e->nb_path)
 	{
-		if (path[i][0] != -1)
+		if (e->all_path[i][0] != -1)
 			len++;
 	}
 	if (!(tmp = malloc(sizeof(int *) * len)))
-		return (NULL);
+		return (-1);
 		i = 0;
 		j = -1;
 	while (++j < len)
 	{
 		k = 0;
-		while (i < e->nb_path && path[i][0] == -1)
+		while (i < e->nb_path && e->all_path[i][0] == -1)
 			i++;
-		if (!(tmp[j] = malloc(sizeof(int) * (ft_inttablen(path[i]) + 1))))
-			return (NULL);
-		while (path[i][k] != -1)
+		if (!(tmp[j] = malloc(sizeof(int) * (ft_inttablen(e->all_path[i]) + 1))))
+			return (-1);
+		while (e->all_path[i][k] != -1)
 		{
-			tmp[i][k] = path[i][k];
+			tmp[j][k] = e->all_path[i][k];
 			k++;
 		}
-		tmp[i][k] = -1;
+		tmp[j][k] = -1;
+		i++;
 	}
-	return (tmp);
+	i = -1;
+	while (++i < e->nb_path)
+		ft_intdel(&e->all_path[i]);
+	free(e->all_path);
+	e->all_path = tmp;
+	e->nb_path = len;
+	return (0);
 }
 
-int		**check_double(int **path, t_lem *e)
+int		check_double(t_lem *e)
 {
 	int i;
 	int j;
@@ -157,18 +164,18 @@ int		**check_double(int **path, t_lem *e)
 		while (++j < e->nb_path)
 		{
 			k = 0;
-			if (ft_inttablen(path[i]) != ft_inttablen(path[j]))
+			if (ft_inttablen(e->all_path[i]) != ft_inttablen(e->all_path[j]))
 				continue ;
 			else
 			{
-				while (path[i][k] == path[j][k] && path[i][k] != -1 && path[j][k] != -1)
+				while (e->all_path[i][k] == e->all_path[j][k] && e->all_path[i][k] != -1 && e->all_path[j][k] != -1)
 					k++;
-				if (path[i][k] == -1 && path[j][k] == -1)
-					path[i][0] = -1;
+				if (e->all_path[i][k] == -1 && e->all_path[j][k] == -1)
+					e->all_path[i][0] = -1;
 			}
 		}
 	}
-	return (final_path_poss(path, e));
+	return (final_path_poss(e));
 }
 
 int		algo_next(t_lem *e)
@@ -203,6 +210,9 @@ int		algo_next(t_lem *e)
 		}
 	}
 	ft_printf("\n------------\n\n");
+	ft_print_allpath(e);
+	check_double(e);
+	dprintf(1, "printing new all_path\n");
 	ft_print_allpath(e);
 	return (0);
 }

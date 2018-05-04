@@ -6,7 +6,7 @@
 /*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/25 00:29:45 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/03 17:15:24 by nbettach    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/04 17:37:10 by jjanin-r    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -119,7 +119,7 @@ int					main(void)
 		j = -1;
 		ft_printf("PATH %d: ", i);
 		while (e->data[e->nb_room - 1].path[i][++j] != -1)
-			ft_printf("%d ",e->data[e->nb_room - 1].path[i][j]);
+			ft_printf("%s ",e->data[e->data[e->nb_room - 1].path[i][j]].name);
 		ft_printf("\n");
 	}
 	ft_printf("\n-------------\n");

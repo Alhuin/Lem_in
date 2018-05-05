@@ -6,7 +6,7 @@
 /*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/25 00:15:42 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/04 17:08:51 by nbettach    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/05 17:20:19 by jjanin-r    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -61,6 +61,7 @@ typedef struct	s_lem
 	int			**sorted;
 	int			**matrix;
 	int			**all_path;
+	int			**play;
 	int			nb_path;
 	t_room		*data;
 }				t_lem;
@@ -84,7 +85,8 @@ int				data_sort(t_lem *e, int *equiv);
 void			data_scan(t_lem *e, int *equiv);
 int				ft_inttablen(int *tab);
 int				algo_next(t_lem *e);
-
+int				**count_plays(int **paths, int **poss, t_lem *e, int index);
+void			sort_all_path(t_lem *e, int **paths);
 //-----------------------------------------------------------------------------
 //								A DEGAGER									   
 //-----------------------------------------------------------------------------

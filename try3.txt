@@ -1,22 +1,49 @@
-8
+4
 ##start
-h 1 2
+start 1 2
 b 2 3
 c 3 4
-i 9 10
 d 4 5
 e 5 6
-f 6 7
 g 7 8
 ##end
-a 8 9
-a-c
-a-b
-a-i
-c-e
-e-d
-b-f
-b-d
-f-g
-d-h
-g-h
+end 8 9
+a 50 51
+h 10 11
+i 11 12
+j 12 13
+k 13 14
+l 14 15
+m 15 16
+n 16 17
+o 17 18
+p 18 19
+q 19 20
+r 20 21
+s 21 22
+t 22 23
+end-a
+end-b
+end-c
+end-d
+start-t
+start-n
+start-o
+start-p
+start-s
+t-m
+m-l
+l-k
+j-k
+j-a
+n-i
+n-e
+i-b
+o-e
+e-g
+e-c
+s-r
+r-q
+p-q
+p-h
+h-d

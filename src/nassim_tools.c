@@ -6,7 +6,7 @@
 /*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/26 17:34:13 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/04 15:25:17 by nbettach    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/05 19:16:03 by jjanin-r    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -133,7 +133,7 @@ int make_matrice(t_lem *e)
 {
 	printf("MATRICE NON SORTED\n");
 	make_matricei_suit(e);
-	print_matrix(e);
+//	print_matrix(e);
 	printf("\nDATA LINKS NON SORTED\n");
 	print_datalinks(e);
 	ft_printf("\n");
@@ -142,7 +142,7 @@ int make_matrice(t_lem *e)
 	print_datalinks(e);
 	printf("\nMATRICE SORTED\n");
 	make_matricei_suit(e);
-	print_matrix(e);
+//	print_matrix(e);
 	return (0);
 }
 

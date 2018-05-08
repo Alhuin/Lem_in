@@ -6,7 +6,7 @@
 #    By: nbettach <marvin@le-101.fr>                +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/03/17 13:51:41 by nbettach     #+#   ##    ##    #+#        #
-#    Updated: 2018/05/05 12:41:45 by jjanin-r    ###    #+. /#+    ###.fr      #
+#    Updated: 2018/05/08 18:41:00 by jjanin-r    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -14,7 +14,7 @@
 NAME = lem-in
 INC = ./includes
 LEMIN = main.c read_ants.c read_links.c make_matrice.c free.c utils.c\
-		nassim_tools.c algo.c algo_next.c dispatch_ants.c
+		nassim_tools.c algo.c algo_next.c dispatch_ants.c move_ants.c
 SRC = $(addprefix ./src/, $(LEMIN))
 OBJ = $(SRC:.c=.o)
 

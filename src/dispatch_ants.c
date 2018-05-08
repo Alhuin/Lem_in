@@ -6,7 +6,7 @@
 /*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/04 18:23:25 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/05 17:19:49 by jjanin-r    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/08 20:10:55 by jjanin-r    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -26,8 +26,22 @@ int		**swap_one(int **tamere, int i, int j)
 	tamere[j][0] += 1;
 /*	tamere[i][0] = (tamere[i][0] > tamere[j][0] ? tamere[i][0] - 1 : tamere[i][0] + 1);
 	tamere[j][0] = (tamere[j][0] > tamere[i][0] ? tamere[j][0] - 1 : tamere[j][0] + 1);*/
-	dprintf(1, "\ntamere[i][0] = %d\ntamere[j][0] = %d\n", tamere[i][0], tamere[j][0]);
+	dprintf(1, "CHECK \ntamere[%d][0] = %d\ntamere[%d][0] = %d\n", i, tamere[i][0], j, tamere[j][0]);
 	return (tamere);
+}
+
+int		check_all(int **tamere)
+{
+	int	j;
+
+	j = 0;
+	while (tamere[j])
+	{
+		if (tamere[0][0] - tamere[j][0] > 1)
+			return (0);
+		j++;
+	}
+	return (1);
 }
 
 int		**check_swap_interval(int **tamere)
@@ -37,17 +51,15 @@ int		**check_swap_interval(int **tamere)
 
 	i = 0;
 	j = 1;
-	while (tamere[j] && tamere[i][0] - tamere[j][0] > 1)
+	while (tamere[j] && !check_all(tamere))
 	{
-		j = 1;
-		while (tamere[j] && abs(tamere[i][0] - tamere[j][0]) <= 1)
-		{
-			dprintf(1, "CHECK \ntamere[i][0] = %d\ntamere[j][0] = %d\n", tamere[i][0], tamere[j][0]);
+		while (tamere[j] && ft_abs(tamere[j - 1][0] - tamere[j][0]) <= 1)
 			j++;
-		}
-		while (tamere[j] && tamere[i][0] - tamere[j][0] > 1)
+		while (tamere[j] && tamere[j - 1][0] - tamere[j][0] > 1)
+		{
 			swap_one(tamere, j - 1, j);
-		j = 1;
+			j = 1;
+		}
 	}
 	return (tamere);
 }
@@ -148,7 +160,7 @@ int		**count_plays(int **paths, int **poss, t_lem *e, int index)
 	{
 		dprintf(1, "\nposs = %d\ntamere[i][0] = %d\n longueur de chemin = %d\n", index, tamere[i][0], ft_inttablen(paths[poss[index][i]]));
 		tamere[i][1] = tamere[i][0] - ft_inttablen(paths[poss[index][i]]);
-		}
+	}
 	dprintf(1, "9 WTF?\n");
 	return (tamere);
 }

@@ -6,7 +6,7 @@
 /*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/25 00:15:42 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/05 17:20:19 by jjanin-r    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/08 19:04:19 by jjanin-r    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -36,6 +36,7 @@ typedef struct	s_room
 	int			dist_e;
 	int			**path;
 	int			nb_path;
+	int			ant;
 }				t_room;
 
 typedef struct	s_forest
@@ -87,6 +88,8 @@ int				ft_inttablen(int *tab);
 int				algo_next(t_lem *e);
 int				**count_plays(int **paths, int **poss, t_lem *e, int index);
 void			sort_all_path(t_lem *e, int **paths);
+int				move_ants(t_lem *e, int play);
+void			print_inttab(int *s1);
 //-----------------------------------------------------------------------------
 //								A DEGAGER									   
 //-----------------------------------------------------------------------------

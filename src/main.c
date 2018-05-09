@@ -6,7 +6,7 @@
 /*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/25 00:29:45 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/08 19:46:56 by jjanin-r    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/09 13:12:33 by nbettach    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -151,7 +151,8 @@ int					main(void)
 		ft_printf("\n");
 	}
 	ft_printf("\n-------------\n");
-	algo_next(e);
+	if (algo_next(e))
+		return (ft_error(e));
 	sort_all_path(e, e->data[e->nb_room - 1].path);
 	i = -1;
 	//	dprintf(1, "\nnb_ants = %d\nnb_poss = %d\n", e->nb_ants, e->nb_path);

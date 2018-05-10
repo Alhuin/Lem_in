@@ -6,7 +6,7 @@
 /*   By: nbettach <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/26 17:13:20 by nbettach     #+#   ##    ##    #+#       */
-/*   Updated: 2018/03/17 16:11:35 by nbettach    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/10 12:10:29 by jjanin-r    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,6 +21,7 @@
 # include <stdio.h>
 
 # define BUFF_SIZE 4096
+# define BUFF_GNL 4096
 
 double				ft_abs(double nbr);
 wchar_t				*ft_wstrdup(wchar_t *s1);

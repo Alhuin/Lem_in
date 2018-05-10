@@ -6,7 +6,7 @@
 /*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/25 00:15:42 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/08 19:04:19 by jjanin-r    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/10 14:08:51 by jjanin-r    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -37,6 +37,7 @@ typedef struct	s_room
 	int			**path;
 	int			nb_path;
 	int			ant;
+	int			floor;
 }				t_room;
 
 typedef struct	s_forest
@@ -64,6 +65,7 @@ typedef struct	s_lem
 	int			**all_path;
 	int			**play;
 	int			nb_path;
+	int			poss_to_play;
 	t_room		*data;
 }				t_lem;
 
@@ -73,7 +75,7 @@ int				ft_check_room_coord(t_lem *e, int x, int y);
 int				ft_init_room(char *name, t_lem *e, int x, int y);
 void			ft_free_tmp(char **tmp);
 char			**ft_get_room(t_lem *e);
-void			ft_diese(t_lem *e);
+int				ft_diese(t_lem *e);
 int				ft_parse(t_lem *e, char **t);
 int				ft_error(t_lem *e);
 char			**ft_get_links(t_lem *e);
@@ -101,5 +103,6 @@ int				sort_matrix(t_lem *e);
 int				make_matricei_suit(t_lem *e);
 int				make_matrice(t_lem *e);
 void			ft_print_allpath(t_lem *e);
-void			ft_print_path(t_lem *e, int j);
+void			ft_print_path(t_lem *e, int j, int i);
+void			ft_print_dataname(t_lem *e);
 #endif

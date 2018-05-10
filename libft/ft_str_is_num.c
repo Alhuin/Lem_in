@@ -6,18 +6,23 @@
 /*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/25 00:46:09 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/04/25 00:46:12 by jjanin-r    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/09 20:10:02 by jjanin-r    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 int		ft_str_is_num(char *str)
 {
-	while (str[0] != '\0')
+	int	i;
+
+	i = 0;
+	if (!str)
+		return (0);
+	while (str[i] != '\0')
 	{
 		if (!(str[0] >= '0' && str[0] <= '9'))
 			return (0);
-		str++;
+		i++;
 	}
 	return (1);
 }

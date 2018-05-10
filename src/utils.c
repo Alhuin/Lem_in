@@ -6,25 +6,35 @@
 /*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/25 00:34:01 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/04/25 16:05:31 by jjanin-r    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/10 13:10:57 by jjanin-r    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/lemin.h"
 
-void				ft_diese(t_lem *e)
+int					ft_diese(t_lem *e)
 {
-	if (!ft_strcmp(e->line, "##start"))
-		e->start_end = 1;
-	else if (!ft_strcmp(e->line, "##end"))
-		e->start_end = 2;
+	if (!ft_strncmp(e->line, "##", 2))
+	{
+		if (!ft_strcmp(e->line, "##start"))
+			e->start_end = 1;
+		else if (!ft_strcmp(e->line, "##end"))
+			e->start_end = 2;
+		else
+			return (-2);
+		if (e->start_end == 1 && e->start != -1)
+			return (-1);
+		else if (e->start_end == 2 && e->end != -1)
+			return (-1);
+	}
+	return (0);
 }
 
 int					ft_error(t_lem *e)
 {
 	free_env(&e);
-	ft_printf("Error\n");
+	ft_printf("ERROR\n");
 	return (-1);
 }
 
@@ -43,7 +53,8 @@ int					init_env(t_lem **e)
 	(*e)->sorted = NULL;
 	(*e)->error = 0;
 	(*e)->room = 0;
-	(*e)->start = 0;
-	(*e)->end = 0;
+	(*e)->start = -1;
+	(*e)->end = -1;
+	(*e)->poss_to_play = 0;
 	return (0);
 }

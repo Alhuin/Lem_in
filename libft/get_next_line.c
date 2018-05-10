@@ -6,7 +6,7 @@
 /*   By: nbettach <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/11/28 18:07:28 by nbettach     #+#   ##    ##    #+#       */
-/*   Updated: 2018/02/14 17:00:31 by nbettach    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/10 12:14:06 by jjanin-r    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -31,7 +31,7 @@ static int		ft_result(t_gnl *lst)
 			return (0);
 	}
 	else if (lst->ret < 0)
-		return (-1);
+		return (-2);
 	return (1);
 }
 
@@ -50,13 +50,13 @@ int				get_next_line(const int fd, char **line)
 {
 	static t_gnl	lst;
 
-	lst.buff = ft_strnew(BUFF_SIZE + 1);
+	lst.buff = ft_strnew(BUFF_GNL + 1);
 	if (!lst.text && (lst.text = (char *)ft_memalloc(sizeof(char))) == NULL)
 		return (-1);
 	lst.tmp = ft_strchr(lst.text, '\n');
 	while (lst.tmp == NULL)
 	{
-		lst.ret = read(fd, lst.buff, BUFF_SIZE);
+		lst.ret = read(fd, lst.buff, BUFF_GNL);
 		if ((lst.result = ft_result(&lst)) < 1)
 			return (lst.result);
 	}

@@ -6,7 +6,7 @@
 /*   By: jjanin-r <jjanin-r@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/25 00:17:28 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/04/26 17:45:54 by jjanin-r    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/09 18:37:22 by jjanin-r    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -57,8 +57,13 @@ int					data_sort(t_lem *e, int *equiv)
 	while (++k < e->nb_room)
 	{
 		i = 0;
-		while (equiv[i] != k)
+		while (i < e->nb_room && equiv[i] != k)
+//		{
+//			dprintf(1, "swap data[%d] & data[%d]\n", i, k);
 			i++;
+//		}
+		if (i == e->nb_room)
+			continue ;
 		data_to_tmp(i, k, tmp, e);
 		ft_strdel(&e->data[i].name);
 		ft_intdel(&e->data[i].links);
@@ -66,6 +71,9 @@ int					data_sort(t_lem *e, int *equiv)
 	k = -1;
 	while (++k < e->nb_room)
 	{
+//		dprintf(1, "k = %d\n", k);
+		if (equiv[k] == -1)
+			continue ;
 		tmp_to_data(k, k, tmp, e);
 		ft_strdel(&tmp[k].name);
 		ft_intdel(&tmp[k].links);
@@ -87,12 +95,15 @@ void				data_scan(t_lem *e, int *equiv)
 	{
 		i = -1;
 		while (++i < e->nb_room)
+		{
 			if (equiv[i] == tour)
-				break ;
-		j = -1;
-		while (++j < e->data[i].nb_links)
-			if (equiv[e->data[i].links[j]] == -1)
-				equiv[e->data[i].links[j]] = ++k;
+			{
+				j = -1;
+				while (++j < e->data[i].nb_links)
+					if (equiv[e->data[i].links[j]] == -1)
+						equiv[e->data[i].links[j]] = ++k;
+			}
+		}
 	}
 	i = -1;
 	while (++i < e->nb_room)
@@ -100,5 +111,11 @@ void				data_scan(t_lem *e, int *equiv)
 		j = -1;
 		while (++j < e->data[i].nb_links)
 			e->data[i].links[j] = equiv[e->data[i].links[j]];
+	}
+	i = -1;
+	while (++i < e->nb_room)
+	{
+		if (equiv[i] == - 1)
+			equiv[i] = ++k;
 	}
 }

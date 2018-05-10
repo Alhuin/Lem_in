@@ -6,7 +6,7 @@
 /*   By: nbettach <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2017/12/26 17:12:54 by nbettach     #+#   ##    ##    #+#       */
-/*   Updated: 2017/12/26 17:12:54 by nbettach    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/10 12:37:54 by jjanin-r    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -37,6 +37,8 @@ char			**ft_strsplit(char const *s, char c)
 	int		k;
 	char	**str2;
 
+	if (!ft_strcmp(s, "\0"))
+		return (NULL);
 	if (!s || !(str2 = (char **)malloc(sizeof(*str2) *
 		(ft_countwords(s, c) + 1))))
 		return (NULL);
@@ -53,6 +55,6 @@ char			**ft_strsplit(char const *s, char c)
 			str2[i][k++] = s[j++];
 		str2[i][k] = '\0';
 	}
-	str2[i] = 0;
+	str2[i] = NULL;
 	return (str2);
 }

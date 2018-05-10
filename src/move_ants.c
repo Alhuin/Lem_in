@@ -6,7 +6,7 @@
 /*   By: dguelpa <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/07 16:00:01 by dguelpa      #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/08 19:36:10 by jjanin-r    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/10 13:32:58 by jjanin-r    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -31,6 +31,7 @@ int	move_ants(t_lem *e, int play)
 	int	nb_paths;
 	int	path_len;
 	int	*path;
+	int	turn = 0;
 
 	nb_paths = ft_inttablen(e->all_path[play]);
 	dprintf(1, "nb_paths = %d\n", nb_paths);
@@ -49,7 +50,6 @@ int	move_ants(t_lem *e, int play)
 //			dprintf(1, "e->data bite = %s | %s\n", e->data[0].name, e->data[1].name);
 			while (++i <= path_len)
 			{
-//				dprintf(1, "ZOB1 i = %d\n", i);
 				if (i == path_len)
 				{
 //					dprintf(1, "START\n");
@@ -58,9 +58,11 @@ int	move_ants(t_lem *e, int play)
 						ft_printf("L%d-%s ", a, e->data[path[i - 1]].name);
 						e->data[path[i - 1]].ant = a++;
 						e->play[j][1]--;
+						if (e->nb_room == 2)
+							ants_arrived++;
 					}
 				}
-				else if (e->data[path[i]].ant != 0)
+				else if (e->data[path[i]].ant != 0 && i)
 				{
 					if (i == 1)
 					{
@@ -70,7 +72,6 @@ int	move_ants(t_lem *e, int play)
 					}
 					else
 					{
-//						dprintf(1, "ZOB2\n");
 						ft_printf("L%d-%s ", e->data[path[i]].ant, e->data[path[i - 1]].name);
 						e->data[path[i - 1]].ant = e->data[path[i]].ant;
 					}
@@ -79,8 +80,9 @@ int	move_ants(t_lem *e, int play)
 			}
 		}
 		ft_printf("\n");
-		dprintf(1, "--- END OF TURN ---\n");
+//		dprintf(1, "--- END OF TURN ---\n");
+		turn++;
 	}
-	dprintf(2, "PUTAIN ANTS ARRIVED = %d\n", ants_arrived);
+	dprintf(2, "%d ANTS ARRIVED IN %d TURNS", ants_arrived, turn);
 	return (0);
 }

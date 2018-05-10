@@ -6,7 +6,7 @@
 /*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/20 11:51:16 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/08 18:32:28 by jjanin-r    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/10 14:09:18 by jjanin-r    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,17 +24,17 @@ int			ft_check_room_name(t_lem *e, char *name, int o)
 		return (0);
 	if (name[0] == 'L')
 		return (-1);
-	dprintf(2, "c'est la zob\n");
+	//dprintf(2, "c'est la zob\n");
 	while (i < e->nb_room)
 	{
 		if (ft_strcmp(name, e->data[i].name) == 0)
 			eq++;
-		dprintf(2, "voici les comparaison : %s %s\n", name, e->data[i].name);
+	//	dprintf(2, "voici les comparaison : %s %s\n", name, e->data[i].name);
 		i++;
 	}
 	if (o == 1 && eq != 0)
 	{
-		dprintf(2, "o == 1\neq = %d\n", eq);
+	//	dprintf(2, "o == 1\neq = %d\n", eq);
 		return (-1);
 	}
 	if (o == 2 && eq != 1)
@@ -82,6 +82,7 @@ int			ft_init_room(char *name, t_lem *e, int x, int y)
 	e->data[e->nb_room - 1].path = NULL;
 	e->data[e->nb_room - 1].nb_path = 0;
 	e->data[e->nb_room - 1].ant = 0;
+	e->data[e->nb_room - 1].floor = -1;
 	e->data[e->nb_room - 1].dist_s = (e->start_end == 1 ? 0 : -1);
 	e->data[e->nb_room - 1].dist_e = (e->start_end == 2 ? 0 : -1);
 	if (e->start_end == 1)
@@ -112,10 +113,12 @@ char		**ft_get_room(t_lem *e)
 
 	i = 0;
 	if (!(t = ft_strsplit(e->line, ' ')))
-		e->error = 1;
+		return (NULL);
 	while (t[++i])
+	{
 		if (!ft_str_is_num(t[i]))
 			e->error = 1;
+	}
 	if (i != 3)
 		e->error = 1;
 	if (e->error == 1)

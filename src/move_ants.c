@@ -34,7 +34,7 @@ int	move_ants(t_lem *e, int play)
 	int	turn = 0;
 
 	nb_paths = ft_inttablen(e->all_path[play]);
-	dprintf(1, "nb_paths = %d\n", nb_paths);
+//	dprintf(1, "nb_paths = %d\n", nb_paths);
 	ants_arrived = 0;
 	a = 1;
 	while (ants_arrived < e->nb_ants)

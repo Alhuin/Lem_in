@@ -91,7 +91,7 @@ int		*ft_inttabadd(int *s1, int k)
 	int		len;
 
 	len = ft_inttablen(s1);
-	printf("len s1 = %d\n", len);
+//	printf("len s1 = %d\n", len);
 	new = malloc(sizeof(int) * (len + 2));
 	i = -1;
 	j = 0;
@@ -141,7 +141,7 @@ int		path_copy(t_lem *e, int i, int j)
 
 	if (i == 0)//e->data[i].path == NULL)
 	{
-		dprintf(2, "[  i =   %d]\n", i);
+//		dprintf(2, "[  i =   %d]\n", i);
 		e->data[j].path[0] = malloc(sizeof(int) * 2);
 		e->data[j].path[0][0] = i;
 		e->data[j].path[0][1] = -1;
@@ -186,10 +186,10 @@ void	make_floor(t_lem *e)
 		}
 	}
 	e->data[e->nb_room - 1].floor = f + 1;
-	i = -1;
-	dprintf(1, "\nPRINT FLOORS\n");
-	while (++i < e->nb_room)
-		dprintf(1, "room %s (data[%d]) at floor %d\n", e->data[i].name, i, e->data[i].floor);
+//	i = -1;
+//	dprintf(1, "\nPRINT FLOORS\n");
+//	while (++i < e->nb_room)
+//		dprintf(1, "room %s (data[%d]) at floor %d\n", e->data[i].name, i, e->data[i].floor);
 }
 
 int		update_path(t_lem *e, int i)
@@ -205,7 +205,7 @@ int		update_path(t_lem *e, int i)
 				return (-1);
 			if (path_copy(e, i, e->data[i].links[j]))
 				return (-1);
-			ft_print_path(e, e->data[i].links[j], i);
+		//	ft_print_path(e, e->data[i].links[j], i);
 		}
 	}
 	return (0);
@@ -228,7 +228,7 @@ int		algo_main(t_lem *e)
 					return (-1);
 				if (path_copy(e, i, e->data[i].links[j]))
 					return (-1);
-				ft_print_path(e, e->data[i].links[j], i);
+			//	ft_print_path(e, e->data[i].links[j], i);
 				if (e->data[i].floor == e->data[e->data[i].links[j]].floor && e->data[i].links[j] < i)
 					if (update_path(e, e->data[i].links[j]) == -1)
 						return (-1);
@@ -237,6 +237,6 @@ int		algo_main(t_lem *e)
 	}
 	if (!e->data[i - 1].path[0] || !e->data[i - 1].nb_path)
 		return (-1);
-	dprintf(1, "\nNB TOTAL PATH: %d\n", e->data[i - 1].nb_path);
+	//dprintf(1, "\nNB TOTAL PATH: %d\n", e->data[i - 1].nb_path);
 	return (0);
 }

@@ -202,9 +202,8 @@ int					main(void)
 //	ft_print_dataname(e);
 //	printf("\n");
 	ft_printf("%s\n", e->save);
-	print_inttab(e->data[e->nb_room - 1].path[e->all_path[0][0]]);
+//	print_inttab(e->data[e->nb_room - 1].path[e->all_path[0][0]]);
 	move_ants(e, e->poss_to_play);
-	//PRINT SOLUTIONS
-	//free_env(&e);
+	free_env(&e);
 	return (0);
 }

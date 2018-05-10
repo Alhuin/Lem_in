@@ -96,10 +96,10 @@ int sort_matrix(t_lem *e)
 	}
 	//SCAN data POUR AVOIR L'ORDRE && METTRE EQUIVALENCE DATA[i].LINKS
 	data_scan(e, equiv);
-	i = -1;
-	while (++i < e->nb_room)
-		printf("equiv[%d] = %d name = %s\n", i, equiv[i], e->data[i].name);
-	printf("e->end : %d e->start %d", e->end, e->start);
+//	i = -1;
+//	while (++i < e->nb_room)
+//		printf("equiv[%d] = %d name = %s\n", i, equiv[i], e->data[i].name);
+//	printf("e->end : %d e->start %d", e->end, e->start);
 	//TRI DE DATA
 	data_sort(e, equiv);
 	return (0);
@@ -135,17 +135,17 @@ int	make_matricei_suit(t_lem *e)
 
 int make_matrice(t_lem *e)
 {
-	printf("MATRICE NON SORTED\n");
-	make_matricei_suit(e);
+//	printf("MATRICE NON SORTED\n");
+//	make_matricei_suit(e);
 //	print_matrix(e);
-	printf("\nDATA LINKS NON SORTED\n");
-	print_datalinks(e);
-	ft_printf("\n");
+//	printf("\nDATA LINKS NON SORTED\n");
+//	print_datalinks(e);
+//	ft_printf("\n");
 	sort_matrix(e);
-	printf("DATA LINKS SORTED\n");
-	print_datalinks(e);
-	printf("\nMATRICE SORTED\n");
-	make_matricei_suit(e);
+//	printf("DATA LINKS SORTED\n");
+//	print_datalinks(e);
+//	printf("\nMATRICE SORTED\n");
+//	make_matricei_suit(e);
 //	print_matrix(e);
 	return (0);
 }

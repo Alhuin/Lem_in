@@ -196,8 +196,8 @@ int		algo_next(t_lem *e)
 	}
 	if (check_double(e))
 		return (-1);
-	dprintf(1, "printing new all_path\n");
-	ft_print_allpath(e);
+//	dprintf(1, "printing new all_path\n");
+//	ft_print_allpath(e);
 
 	return (0);
 }

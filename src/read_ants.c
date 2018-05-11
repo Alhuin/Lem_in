@@ -6,7 +6,7 @@
 /*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/20 11:51:16 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/11 12:31:12 by nbettach    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/11 13:30:40 by jjanin-r    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,6 +23,8 @@ int			ft_check_room_name(t_lem *e, char *name, int o)
 	if (!e->data)
 		return (0);
 	if (name[0] == 'L')
+		return (-1);
+	if (ft_strchr(name, '-'))
 		return (-1);
 	while (i < e->nb_room)
 	{

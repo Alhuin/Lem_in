@@ -6,7 +6,7 @@
 /*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/25 00:29:45 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/11 10:49:04 by nbettach    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/11 13:29:53 by jjanin-r    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -38,6 +38,26 @@ static int			ft_check_data(t_lem *e)
 	}
 	if (start != 1 || end != 1)
 		return (-1);
+	return (0);
+}
+
+int					check_start_end(t_lem *e)
+{
+	int	j;
+
+	j = -1;
+	while (++j < e->data[e->start].nb_links)
+	{
+		if (e->data[e->start].links[j] == e->end)
+		{
+			ft_printf("%s\n", e->save);
+			j = 0;
+			while (++j <= e->nb_ants)
+				ft_printf("L%d-%s ", j, e->data[e->end].name);
+			ft_printf("\n");
+			return (1);
+		}
+	}
 	return (0);
 }
 
@@ -78,17 +98,18 @@ int					main(void)
 		return (ft_error(e));
 	if (ft_parse(e, NULL) == -1 || ft_check_data(e) == -1)
 		return (ft_error(e));
-	e->all_path = NULL;
-	e->play = NULL;
-	ft_sorting(e);
-	if (algo_main(e) == -1)
-		return (ft_error(e));
-	if (algo_next(e))
-		return (ft_error(e));
-	sort_all_path(e, e->data[e->nb_room - 1].path);
-	make_play(e);
-	ft_printf("%s\n", e->save);
-	move_ants(e, e->poss_to_play);
+	if (!check_start_end(e))
+	{
+		ft_sorting(e);
+		if (algo_main(e) == -1)
+			return (ft_error(e));
+		if (algo_next(e))
+			return (ft_error(e));
+		sort_all_path(e, e->data[e->nb_room - 1].path);
+		make_play(e);
+		ft_printf("%s\n", e->save);
+		move_ants(e, e->poss_to_play);
+	}
 	free_env(&e);
 	return (0);
 }

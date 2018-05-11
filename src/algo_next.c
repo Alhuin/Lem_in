@@ -6,7 +6,7 @@
 /*   By: nbettach <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/03 14:34:46 by nbettach     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/09 15:25:18 by jjanin-r    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/11 12:41:13 by nbettach    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -196,8 +196,5 @@ int		algo_next(t_lem *e)
 	}
 	if (check_double(e))
 		return (-1);
-//	dprintf(1, "printing new all_path\n");
-//	ft_print_allpath(e);
-
 	return (0);
 }

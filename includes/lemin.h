@@ -6,7 +6,7 @@
 /*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/25 00:15:42 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/11 10:49:00 by nbettach    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/11 12:23:37 by nbettach    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -95,6 +95,8 @@ void			print_inttab(int *s1);
 void			data_to_tmp(int a, int b, t_room *tmp, t_lem *e);
 void			tmp_to_data(int a, int b, t_room *tmp, t_lem *e);
 int				ft_sorting(t_lem *e);
+int		*ft_inttabjoin(int *s1, int *s2);
+
 
 
 //-----------------------------------------------------------------------------

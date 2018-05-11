@@ -6,7 +6,7 @@
 /*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/20 11:51:16 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/10 14:09:18 by jjanin-r    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/11 12:31:12 by nbettach    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,17 +24,14 @@ int			ft_check_room_name(t_lem *e, char *name, int o)
 		return (0);
 	if (name[0] == 'L')
 		return (-1);
-	//dprintf(2, "c'est la zob\n");
 	while (i < e->nb_room)
 	{
 		if (ft_strcmp(name, e->data[i].name) == 0)
 			eq++;
-	//	dprintf(2, "voici les comparaison : %s %s\n", name, e->data[i].name);
 		i++;
 	}
 	if (o == 1 && eq != 0)
 	{
-	//	dprintf(2, "o == 1\neq = %d\n", eq);
 		return (-1);
 	}
 	if (o == 2 && eq != 1)

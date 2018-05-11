@@ -6,7 +6,7 @@
 /*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/25 00:29:45 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/11 20:05:35 by magaspar    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/11 20:35:09 by magaspar    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -74,25 +74,26 @@ void				ft_free_play(int **to_free)
 	to_free = NULL;
 }
 
-int					save_play(int ***play, int **tmp)
+int					**save_play(int **tmp)
 {
 	int i;
+	int **play;
 
 	i = 0;
 	while (tmp[i])
 		i++;
-	if (!(*play = ft_memalloc(sizeof(int *) * (i + 1))))
-		return (-1);
-	(*play)[i] = NULL;
+	if (!(play = malloc(sizeof(int *) * (i + 1))))
+		return (NULL);
+	play[i] = NULL;
 	i = -1;
-	while ((*play)[++i])
+	while (tmp[++i])
 	{
-		if (!((*play)[i] = malloc(sizeof(int) * 2)))
-			return (-1);
-		(*play)[i][0] = tmp[i][0];
-		(*play)[i][1] = tmp[i][1];
+		if (!(play[i] = malloc(sizeof(int) * 2)))
+			return (NULL);
+		play[i][0] = tmp[i][0];
+		play[i][1] = tmp[i][1];
 	}
-	return (0);
+	return (play);
 }
 
 int					make_play(t_lem *e)
@@ -111,8 +112,9 @@ int					make_play(t_lem *e)
 		if (plays == -1 || plays > tmp[0][0])
 		{
 			ft_free_play(e->play);
-			if (save_play(&e->play, tmp) == -1)
+			if (!(e->play = save_play(tmp)))
 				return (-1);
+			dprintf(1, "e->play[0] = %p\n", e->play[0]);
 			plays = e->play[0][0];
 			ft_free_play(tmp);
 			e->poss_to_play = i;

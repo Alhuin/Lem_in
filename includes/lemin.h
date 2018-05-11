@@ -6,7 +6,7 @@
 /*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/25 00:15:42 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/11 12:23:37 by nbettach    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/11 14:28:58 by jjanin-r    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -112,4 +112,5 @@ int				make_matrice(t_lem *e);
 void			ft_print_allpath(t_lem *e);
 void			ft_print_path(t_lem *e, int j, int i);
 void			ft_print_dataname(t_lem *e);
+void			ft_print_last(t_lem *e);
 #endif

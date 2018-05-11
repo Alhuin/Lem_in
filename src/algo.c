@@ -6,7 +6,7 @@
 /*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/25 00:16:52 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/11 12:43:16 by nbettach    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/11 15:00:36 by jjanin-r    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -117,7 +117,7 @@ void	make_floor(t_lem *e)
 	}
 	e->data[e->nb_room - 1].floor = f + 1;
 }
-
+/*
 int		update_path(t_lem *e, int i)
 {
 	int j;
@@ -135,6 +135,7 @@ int		update_path(t_lem *e, int i)
 	}
 	return (0);
 }
+*/
 int		algo_main(t_lem *e)
 {
 	int		i;
@@ -153,10 +154,10 @@ int		algo_main(t_lem *e)
 					return (-1);
 				if (path_copy(e, i, e->data[i].links[j]))
 					return (-1);
-				if (e->data[i].floor == e->data[e->data[i].links[j]].floor
-						&& e->data[i].links[j] < i)
-					if (update_path(e, e->data[i].links[j]) == -1)
-						return (-1);
+	//			if (e->data[i].floor == e->data[e->data[i].links[j]].floor
+	//					&& e->data[i].links[j] < i)
+	//				if (update_path(e, e->data[i].links[j]) == -1)
+	//					return (-1);
 			}
 		}
 	}

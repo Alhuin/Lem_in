@@ -6,7 +6,7 @@
 /*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/25 00:29:45 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/11 13:29:53 by jjanin-r    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/11 14:29:19 by jjanin-r    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -105,6 +105,7 @@ int					main(void)
 			return (ft_error(e));
 		if (algo_next(e))
 			return (ft_error(e));
+		ft_print_last(e);
 		sort_all_path(e, e->data[e->nb_room - 1].path);
 		make_play(e);
 		ft_printf("%s\n", e->save);

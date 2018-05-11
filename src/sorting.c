@@ -6,7 +6,7 @@
 /*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/26 17:34:13 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/11 12:04:37 by nbettach    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/11 14:28:27 by jjanin-r    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -103,16 +103,12 @@ int					ft_sorting(t_lem *e)
 	//SCAN data POUR AVOIR L'ORDRE && METTRE EQUIVALENCE DATA[i].LINKS
 	data_scan(e, equiv);
 	data_sort(e, equiv);
+//	dprintf(1, "print all path, %d \n\n\n\n", e->nb_path);
+//	ft_print_allpath(e);
 	return (0);
 }
 
-
-
-
-
-
-
-/*void	ft_print_allpath(t_lem *e)
+void	ft_print_allpath(t_lem *e)
 {
 	int	i;
 	int	j;
@@ -128,6 +124,26 @@ int					ft_sorting(t_lem *e)
 	}
 }
 
+void	ft_print_last(t_lem *e)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i < e->data[e->nb_room -1].nb_path)
+	{
+		j = 0;
+		printf("Path[%d] : ",i);
+		while (e->data[e->nb_room - 1].path[i][j] != -1)
+		{
+			printf("%d ", e->data[e->nb_room - 1].path[i][j]);
+			j++;
+		}
+		printf("\n");
+	}
+}
+
+/*
 void	ft_print_path(t_lem *e, int j, int i)
 {
 	int l;

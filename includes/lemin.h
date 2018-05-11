@@ -6,7 +6,7 @@
 /*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/25 00:15:42 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/11 14:28:58 by jjanin-r    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/11 16:57:55 by magaspar    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,15 +15,6 @@
 # define LEMIN_H
 # include "../libft/ft_printf.h"
 # include <fcntl.h>
-
-struct s_forest;
-
-typedef struct	s_mat
-{
-	int			l;
-	int			value;
-	int			stone;
-}				t_mat;
 
 typedef struct	s_room
 {
@@ -40,13 +31,6 @@ typedef struct	s_room
 	int			floor;
 }				t_room;
 
-typedef struct	s_forest
-{
-	struct s_room		*room;
-	struct s_forest		*parent;
-	struct s_forest		**subtree;
-}				t_forest;
-
 typedef struct	s_lem
 {
 	int			nb_ants;
@@ -60,8 +44,6 @@ typedef struct	s_lem
 	int			total_nb_links;
 	int			error;
 	int			room;
-	int			**sorted;
-	int			**matrix;
 	int			**all_path;
 	int			**play;
 	int			nb_path;
@@ -92,8 +74,8 @@ int				**count_plays(int **paths, int **poss, t_lem *e, int index);
 void			sort_all_path(t_lem *e, int **paths);
 int				move_ants(t_lem *e, int play);
 void			print_inttab(int *s1);
-void			data_to_tmp(int a, int b, t_room *tmp, t_lem *e);
-void			tmp_to_data(int a, int b, t_room *tmp, t_lem *e);
+int				data_to_tmp(int a, int b, t_room *tmp, t_lem *e);
+int				tmp_to_data(int a, int b, t_room *tmp, t_lem *e);
 int				ft_sorting(t_lem *e);
 int		*ft_inttabjoin(int *s1, int *s2);
 

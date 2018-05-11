@@ -6,7 +6,7 @@
 /*   By: nbettach <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/11 10:28:43 by nbettach     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/11 10:56:38 by nbettach    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/11 17:45:22 by magaspar    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -81,7 +81,6 @@ int					ft_parse(t_lem *e, char **t)
 		{
 			if (deal_links(t, e) == -1)
 				return (-2);
-			links++;
 		}
 		else
 		{
@@ -90,9 +89,8 @@ int					ft_parse(t_lem *e, char **t)
 			else
 				return (-1);
 		}
-		e->save = ft_strjoin(ft_strjoin(e->save, e->line, 2), "\n", 1);
+		e->save = ft_strjoin(ft_strjoin(e->save, e->line, 1), "\n", 1);
+		ft_strdel(&e->line);
 	}
-	if (links == 0 || e->error != 0)
-		return (-1);
 	return (0);
 }

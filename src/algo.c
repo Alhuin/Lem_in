@@ -6,7 +6,7 @@
 /*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/25 00:16:52 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/11 15:00:36 by jjanin-r    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/11 17:14:29 by magaspar    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,14 +21,15 @@ int		*ft_inttabadd(int *s1, int k)
 	int		len;
 
 	len = ft_inttablen(s1);
-	new = malloc(sizeof(int) * (len + 2));
+	if (!(new = malloc(sizeof(int) * (len + 2))))
+		return (NULL);
 	i = -1;
 	j = 0;
 	while (s1[++i] != -1)
 		new[j++] = s1[i];
 	new[j++] = k;
 	new[j] = -1;
-	free(s1);
+	ft_intdel(&s1);
 	return (new);
 }
 
@@ -71,7 +72,8 @@ int		path_copy(t_lem *e, int i, int j)
 
 	if (i == 0)
 	{
-		e->data[j].path[0] = malloc(sizeof(int) * 2);
+		if (!(e->data[j].path[0] = malloc(sizeof(int) * 2)))
+			return (-1);
 		e->data[j].path[0][0] = i;
 		e->data[j].path[0][1] = -1;
 		return (0);
@@ -83,9 +85,11 @@ int		path_copy(t_lem *e, int i, int j)
 	l = 0;
 	while (k < e->data[j].nb_path)
 	{
-		e->data[j].path[k] = ft_inttabjoin(e->data[i].path[l],
-				e->data[j].path[k]);
-		e->data[j].path[k] = ft_inttabadd(e->data[j].path[k], i);
+		if (!(e->data[j].path[k] = ft_inttabjoin(e->data[i].path[l],
+				e->data[j].path[k])))
+			return (-1);
+		if (!(e->data[j].path[k] = ft_inttabadd(e->data[j].path[k], i)))
+			return (-1);
 		k++;
 		l++;
 	}

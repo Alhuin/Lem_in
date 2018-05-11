@@ -6,7 +6,7 @@
 /*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/25 00:34:01 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/11 14:12:14 by jjanin-r    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/11 16:56:27 by magaspar    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -61,7 +61,8 @@ int				*ft_inttabjoin(int *s1, int *s2)
 	else if (s2 == NULL)
 		return (ft_inttabdup(s1));
 	k = ft_inttablen(s1) + ft_inttablen(s2);
-	new = malloc(sizeof(int) * (k + 1));
+	if (!(new = malloc(sizeof(int) * (k + 1))))
+		return (NULL);
 	i = -1;
 	j = -1;
 	while (s1[++i] != -1)
@@ -109,8 +110,6 @@ int				init_env(t_lem **e)
 	(*e)->nb_room = 0;
 	(*e)->start_end = 0;
 	(*e)->total_nb_links = 0;
-	(*e)->matrix = NULL;
-	(*e)->sorted = NULL;
 	(*e)->error = 0;
 	(*e)->room = 0;
 	(*e)->start = -1;

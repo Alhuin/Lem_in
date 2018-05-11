@@ -6,52 +6,52 @@
 /*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/04 18:23:25 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/11 12:40:49 by nbettach    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/11 19:32:52 by magaspar    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/lemin.h"
 
-int		**swap_one(int **tamere, int i, int j)
+int		**swap_one(int **to_play, int i, int j)
 {
-	tamere[i][0] -= 1;
-	tamere[j][0] += 1;
-	return (tamere);
+	to_play[i][0] -= 1;
+	to_play[j][0] += 1;
+	return (to_play);
 }
 
-int		check_all(int **tamere)
+int		check_all(int **to_play)
 {
 	int	j;
 
 	j = 0;
-	while (tamere[j])
+	while (to_play[j])
 	{
-		if (tamere[0][0] - tamere[j][0] > 1)
+		if (to_play[0][0] - to_play[j][0] > 1)
 			return (0);
 		j++;
 	}
 	return (1);
 }
 
-int		**check_swap_interval(int **tamere)
+int		**check_swap_interval(int **to_play)
 {
 	int	i;
 	int	j;
 
 	i = 0;
 	j = 1;
-	while (tamere[j] && !check_all(tamere))
+	while (to_play[j] && !check_all(to_play))
 	{
-		while (tamere[j] && ft_abs(tamere[j - 1][0] - tamere[j][0]) <= 1)
+		while (to_play[j] && ft_abs(to_play[j - 1][0] - to_play[j][0]) <= 1)
 			j++;
-		while (tamere[j] && tamere[j - 1][0] - tamere[j][0] > 1)
+		while (to_play[j] && to_play[j - 1][0] - to_play[j][0] > 1)
 		{
-			swap_one(tamere, j - 1, j);
+			swap_one(to_play, j - 1, j);
 			j = 1;
 		}
 	}
-	return (tamere);
+	return (to_play);
 }
 
 int		**swap_path(int **poss, int i, int j, int k)
@@ -88,37 +88,37 @@ void	sort_all_path(t_lem *e, int **paths)
 
 int		**count_plays(int **paths, int **poss, t_lem *e, int index)
 {
-	int	**tamere;
-	int	plays;
+	int	**to_play;
+	//int	plays;
 	int	i;
 	int len;
 
 	i = -1;
-	plays = 0;
+	//plays = 0;
 	len = ft_inttablen(poss[index]);
-	if (!(tamere = malloc(sizeof(int *) * (len + 1))))
+	if (!(to_play = malloc(sizeof(int *) * (len + 1))))
 		return (NULL);
-	tamere[len] = NULL;
+	to_play[len] = NULL;
 	while (++i < len)
-		if (!(tamere[i] = malloc(sizeof(int) * 2)))
+		if (!(to_play[i] = malloc(sizeof(int) * 2)))
 			return (NULL);
 	if (len == 1)
 	{
-		tamere[0][1] = e->nb_ants;
-		tamere[0][0] = tamere[0][1] + ft_inttablen(paths[poss[index][0]]);
-		return (tamere);
+		to_play[0][1] = e->nb_ants;
+		to_play[0][0] = to_play[0][1] + ft_inttablen(paths[poss[index][0]]);
+		return (to_play);
 	}
 	i = -1;
 	while (poss[index][++i] != -1)
 	{
-		tamere[i][0] = ft_inttablen(paths[poss[index][i]]);
+		to_play[i][0] = ft_inttablen(paths[poss[index][i]]);
 	}
 	i = 0;
-	tamere[0][0] += e->nb_ants;
-	plays = tamere[0][0];
-	tamere = check_swap_interval(tamere);
+	to_play[0][0] += e->nb_ants;
+	//plays = to_play[0][0];
+	to_play = check_swap_interval(to_play);
 	i = -1;
 	while (++i < len)
-		tamere[i][1] = tamere[i][0] - ft_inttablen(paths[poss[index][i]]);
-	return (tamere);
+		to_play[i][1] = to_play[i][0] - ft_inttablen(paths[poss[index][i]]);
+	return (to_play);
 }

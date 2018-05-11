@@ -6,7 +6,7 @@
 /*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/24 20:29:21 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/11 12:44:27 by nbettach    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/11 18:28:29 by magaspar    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,49 +22,31 @@ void			ft_intdel(int **as)
 	}
 }
 
-static void		free_node(t_forest **node)
-{
-	int	i;
-	int links;
-
-	links = (*node)->room->nb_links;
-	i = -1;
-	ft_strdel(&(*node)->room->name);
-	free((*node)->room);
-	while (++i < links)
-		free((*node)->subtree[i]);
-	free((*node)->parent);
-	free((*node)->subtree);
-	free(*node);
-}
-
-void			free_tree(t_forest **tree)
-{
-	int i;
-
-	i = -1;
-	if ((*tree)->subtree)
-	{
-		while (++i < (*tree)->room->nb_links)
-			free_tree(&(*tree)->subtree[i]);
-	}
-	if (*tree)
-		free_node(tree);
-}
-
 void			free_env(t_lem **e)
 {
 	int i;
+	int j;
 
+	j = -1;
 	i = -1;
+	while (++i < (*e)->nb_room)
+	{
+		ft_strdel(&(*e)->data[i].name);
+		ft_intdel(&(*e)->data[i].links);
+		while (++j < (*e)->data[i].nb_path)
+			ft_intdel(&(*e)->data[i].path[j]);
+		free((*e)->data[i].path);
+	}
 	free((*e)->data);
+	j = -1;
+	while ((*e)->play && ++j < ft_inttablen((*e)->all_path[(*e)->poss_to_play]))
+		ft_intdel(&(*e)->play[j]);
+	free((*e)->play);
+	j = -1;
+	while ((*e)->all_path && ++j < (*e)->nb_path)
+		ft_intdel(&(*e)->all_path[j]);
+	free((*e)->all_path);
+	ft_strdel(&(*e)->line);
 	ft_strdel(&(*e)->save);
-	if ((*e)->sorted)
-		while (++i < (*e)->nb_room)
-			ft_intdel(&(*e)->sorted[i]);
-	i = -1;
-	if ((*e)->matrix)
-		while (++i < (*e)->nb_room)
-			ft_intdel(&(*e)->matrix[i]);
 	free(*e);
 }

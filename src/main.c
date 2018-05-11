@@ -6,7 +6,7 @@
 /*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/25 00:29:45 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/11 14:29:19 by jjanin-r    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/11 20:05:35 by magaspar    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -61,23 +61,60 @@ int					check_start_end(t_lem *e)
 	return (0);
 }
 
-void				make_play(t_lem *e)
+void				ft_free_play(int **to_free)
+{
+	int i;
+
+	i = -1;
+	if (to_free == NULL)
+		return ;
+	while (to_free[++i] != NULL)
+		ft_intdel(&to_free[i]);
+	free(to_free);
+	to_free = NULL;
+}
+
+int					save_play(int ***play, int **tmp)
+{
+	int i;
+
+	i = 0;
+	while (tmp[i])
+		i++;
+	if (!(*play = ft_memalloc(sizeof(int *) * (i + 1))))
+		return (-1);
+	(*play)[i] = NULL;
+	i = -1;
+	while ((*play)[++i])
+	{
+		if (!((*play)[i] = malloc(sizeof(int) * 2)))
+			return (-1);
+		(*play)[i][0] = tmp[i][0];
+		(*play)[i][1] = tmp[i][1];
+	}
+	return (0);
+}
+
+int					make_play(t_lem *e)
 {
 	int i;
 	int j;
 	int **tmp;
-	int play;
+	int plays;
 
-	play = -1;
+	plays = -1;
 	tmp = NULL;
 	i = -1;
 	while (++i < e->nb_path)
 	{
 		tmp = count_plays(e->data[e->nb_room - 1].path, e->all_path, e, i);
-		if (play == -1 || play > tmp[0][0])
+		if (plays == -1 || plays > tmp[0][0])
 		{
-			e->play = tmp;
-			play = e->play[0][0];
+			ft_free_play(e->play);
+			if (save_play(&e->play, tmp) == -1)
+				return (-1);
+			plays = e->play[0][0];
+			ft_free_play(tmp);
 			e->poss_to_play = i;
 		}
 		else if (tmp)
@@ -88,6 +125,7 @@ void				make_play(t_lem *e)
 			free(tmp);
 		}
 	}
+	return (0);
 }
 
 int					main(void)
@@ -100,12 +138,12 @@ int					main(void)
 		return (ft_error(e));
 	if (!check_start_end(e))
 	{
-		ft_sorting(e);
+		if (ft_sorting(e) == -1)
+			return (ft_error(e));
 		if (algo_main(e) == -1)
 			return (ft_error(e));
 		if (algo_next(e))
 			return (ft_error(e));
-		ft_print_last(e);
 		sort_all_path(e, e->data[e->nb_room - 1].path);
 		make_play(e);
 		ft_printf("%s\n", e->save);

@@ -6,7 +6,7 @@
 /*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/24 20:29:21 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/11 18:28:29 by magaspar    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/11 21:00:09 by magaspar    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -27,10 +27,10 @@ void			free_env(t_lem **e)
 	int i;
 	int j;
 
-	j = -1;
 	i = -1;
 	while (++i < (*e)->nb_room)
 	{
+		j = -1;
 		ft_strdel(&(*e)->data[i].name);
 		ft_intdel(&(*e)->data[i].links);
 		while (++j < (*e)->data[i].nb_path)

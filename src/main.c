@@ -6,7 +6,7 @@
 /*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/25 00:29:45 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/11 20:35:09 by magaspar    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/11 20:50:54 by magaspar    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -77,16 +77,17 @@ void				ft_free_play(int **to_free)
 int					**save_play(int **tmp)
 {
 	int i;
+	int len;
 	int **play;
 
-	i = 0;
-	while (tmp[i])
-		i++;
-	if (!(play = malloc(sizeof(int *) * (i + 1))))
-		return (NULL);
-	play[i] = NULL;
+	len = 0;
 	i = -1;
-	while (tmp[++i])
+	while (tmp[len])
+		len++;
+	if (!(play = malloc(sizeof(int *) * (len + 1))))
+		return (NULL);
+	play[len] = NULL;
+	while (++i < len)
 	{
 		if (!(play[i] = malloc(sizeof(int) * 2)))
 			return (NULL);
@@ -99,7 +100,6 @@ int					**save_play(int **tmp)
 int					make_play(t_lem *e)
 {
 	int i;
-	int j;
 	int **tmp;
 	int plays;
 
@@ -114,18 +114,10 @@ int					make_play(t_lem *e)
 			ft_free_play(e->play);
 			if (!(e->play = save_play(tmp)))
 				return (-1);
-			dprintf(1, "e->play[0] = %p\n", e->play[0]);
 			plays = e->play[0][0];
-			ft_free_play(tmp);
 			e->poss_to_play = i;
 		}
-		else if (tmp)
-		{
-			j = -1;
-			while (tmp[++j])
-				ft_intdel(&tmp[j]);
-			free(tmp);
-		}
+		ft_free_play(tmp);
 	}
 	return (0);
 }

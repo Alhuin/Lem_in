@@ -1,49 +1,17 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   make_matrice.c                                   .::    .:/ .      .::   */
+/*   nassim_tools.c                                   .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: jjanin-r <jjanin-r@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/04/25 00:17:28 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/09 18:37:22 by jjanin-r    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/04/26 17:34:13 by jjanin-r     #+#   ##    ##    #+#       */
+/*   Updated: 2018/05/11 12:04:37 by nbettach    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/lemin.h"
-
-static void			data_to_tmp(int a, int b, t_room *tmp, t_lem *e)
-{
-	int i;
-
-	i = -1;
-	tmp[b].name = ft_strdup(e->data[a].name);
-	tmp[b].links = malloc(sizeof(int) * e->data[a].nb_links);
-	while (++i < e->data[a].nb_links)
-		tmp[b].links[i] = e->data[a].links[i];
-	tmp[b].room_x = e->data[a].room_x;
-	tmp[b].room_y = e->data[a].room_y;
-	tmp[b].nb_links = e->data[a].nb_links;
-	tmp[b].dist_s = e->data[a].dist_s;
-	tmp[b].dist_e = e->data[a].dist_e;
-}
-
-static void			tmp_to_data(int a, int b, t_room *tmp, t_lem *e)
-{
-	int i;
-
-	i = -1;
-	e->data[b].name = ft_strdup(tmp[a].name);
-	e->data[b].links = malloc(sizeof(int) * tmp[a].nb_links);
-	while (++i < tmp[a].nb_links)
-		e->data[b].links[i] = tmp[a].links[i];
-	e->data[b].room_x = tmp[a].room_x;
-	e->data[b].room_y = tmp[a].room_y;
-	e->data[b].nb_links = tmp[a].nb_links;
-	e->data[b].dist_s = tmp[a].dist_s;
-	e->data[b].dist_e = tmp[a].dist_e;
-}
 
 int					data_sort(t_lem *e, int *equiv)
 {
@@ -58,10 +26,7 @@ int					data_sort(t_lem *e, int *equiv)
 	{
 		i = 0;
 		while (i < e->nb_room && equiv[i] != k)
-//		{
-//			dprintf(1, "swap data[%d] & data[%d]\n", i, k);
 			i++;
-//		}
 		if (i == e->nb_room)
 			continue ;
 		data_to_tmp(i, k, tmp, e);
@@ -71,7 +36,6 @@ int					data_sort(t_lem *e, int *equiv)
 	k = -1;
 	while (++k < e->nb_room)
 	{
-//		dprintf(1, "k = %d\n", k);
 		if (equiv[k] == -1)
 			continue ;
 		tmp_to_data(k, k, tmp, e);
@@ -108,14 +72,84 @@ void				data_scan(t_lem *e, int *equiv)
 	i = -1;
 	while (++i < e->nb_room)
 	{
-		j = -1;
-		while (++j < e->data[i].nb_links)
-			e->data[i].links[j] = equiv[e->data[i].links[j]];
+		if (equiv[i] == - 1)
+			equiv[i] = ++k;
 	}
 	i = -1;
 	while (++i < e->nb_room)
 	{
-		if (equiv[i] == - 1)
-			equiv[i] = ++k;
+		j = -1;
+		while (++j < e->data[i].nb_links)
+			e->data[i].links[j] = equiv[e->data[i].links[j]];
 	}
 }
+
+int					ft_sorting(t_lem *e)
+{
+	int i;
+	int equiv[e->nb_room];
+
+	//DEBUT TABLEAU EQUIV*/
+	i = -1;
+	while (++i < e->nb_room)
+	{
+		if (i == e->end)
+			equiv[i] = 0;
+		else if (i == e->start)
+			equiv[i] = e->nb_room - 1;
+		else
+			equiv[i] = -1;
+	}
+	//SCAN data POUR AVOIR L'ORDRE && METTRE EQUIVALENCE DATA[i].LINKS
+	data_scan(e, equiv);
+	data_sort(e, equiv);
+	return (0);
+}
+
+
+
+
+
+
+
+/*void	ft_print_allpath(t_lem *e)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i < e->nb_path)
+	{
+		j = -1;
+		ft_printf("ALL_PATH %d: ", i);
+		while (e->all_path[i][++j] != -1)
+			ft_printf("%d ",e->all_path[i][j]);
+		ft_printf("\n");
+	}
+}
+
+void	ft_print_path(t_lem *e, int j, int i)
+{
+	int l;
+	int k;
+
+	k = -1;
+	dprintf(2, "\ni = %d\nDATA[%d] name = %s\n", i, j, e->data[j].name);
+	while (++k < e->data[j].nb_path)
+	{
+		l = -1;
+		dprintf(2, "PATH[%d] : ", k);
+		while (e->data[j].path[k][++l] != -1)
+			dprintf(2, "%d ", e->data[j].path[k][l]);
+		dprintf(2, "\n");
+	}
+}
+
+void	ft_print_dataname(t_lem *e)
+{
+	int i;
+
+	i = -1;
+	while (++i < e->nb_room)
+		printf("DATA[%d].name = %s\n", i, e->data[i].name);
+}*/

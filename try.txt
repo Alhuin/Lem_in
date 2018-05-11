@@ -8,7 +8,6 @@ d 13 0
 e 8 2
 c-d
 d-b
-fhweoifhweo
 a-c
 b-e
 a-e

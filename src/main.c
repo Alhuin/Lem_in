@@ -6,13 +6,12 @@
 /*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/25 00:29:45 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/11 20:50:54 by magaspar    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/12 11:53:14 by nbettach    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/lemin.h"
-
 
 static int			ft_check_data(t_lem *e)
 {
@@ -136,7 +135,7 @@ int					main(void)
 			return (ft_error(e));
 		if (algo_main(e) == -1)
 			return (ft_error(e));
-		if (algo_next(e))
+		if (algo_next(e, -1, -1))
 			return (ft_error(e));
 		sort_all_path(e, e->data[e->nb_room - 1].path);
 		make_play(e);

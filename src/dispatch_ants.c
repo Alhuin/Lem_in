@@ -6,7 +6,7 @@
 /*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/04 18:23:25 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/11 19:32:52 by magaspar    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/12 11:46:24 by nbettach    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -89,12 +89,10 @@ void	sort_all_path(t_lem *e, int **paths)
 int		**count_plays(int **paths, int **poss, t_lem *e, int index)
 {
 	int	**to_play;
-	//int	plays;
 	int	i;
 	int len;
 
 	i = -1;
-	//plays = 0;
 	len = ft_inttablen(poss[index]);
 	if (!(to_play = malloc(sizeof(int *) * (len + 1))))
 		return (NULL);
@@ -110,12 +108,8 @@ int		**count_plays(int **paths, int **poss, t_lem *e, int index)
 	}
 	i = -1;
 	while (poss[index][++i] != -1)
-	{
 		to_play[i][0] = ft_inttablen(paths[poss[index][i]]);
-	}
-	i = 0;
 	to_play[0][0] += e->nb_ants;
-	//plays = to_play[0][0];
 	to_play = check_swap_interval(to_play);
 	i = -1;
 	while (++i < len)

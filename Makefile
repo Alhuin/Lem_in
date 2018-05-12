@@ -6,7 +6,7 @@
 #    By: nbettach <marvin@le-101.fr>                +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/03/17 13:51:41 by nbettach     #+#   ##    ##    #+#        #
-#    Updated: 2018/05/11 20:19:39 by magaspar    ###    #+. /#+    ###.fr      #
+#    Updated: 2018/05/12 11:04:18 by nbettach    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -15,7 +15,7 @@ NAME = lem-in
 INC = ./includes
 LEMIN = main.c read_ants.c read_links.c sorting_next.c free.c utils.c\
 		sorting.c algo.c algo_next.c dispatch_ants.c move_ants.c\
-		parsing.c
+		parsing.c check_double.c
 SRC = $(addprefix ./src/, $(LEMIN))
 OBJ = $(SRC:.c=.o)
 

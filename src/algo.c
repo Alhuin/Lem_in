@@ -6,7 +6,7 @@
 /*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/25 00:16:52 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/11 17:14:29 by magaspar    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/12 10:59:02 by nbettach    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -33,17 +33,14 @@ int		*ft_inttabadd(int *s1, int k)
 	return (new);
 }
 
-int		path_manage(t_lem *e, int i, int j)
+int		path_manage(t_lem *e, int i, int j, int y)
 {
-	int		y;
-
 	if (e->data[j].path == NULL && e->data[i].nb_path > 1)
 	{
 		if (!(e->data[j].path = malloc(sizeof(int*) * e->data[i].nb_path)))
 			return (-1);
 		e->data[j].nb_path += e->data[i].nb_path;
-		y = -1;
-		while (++y <  e->data[i].nb_path)
+		while (++y < e->data[i].nb_path)
 			e->data[j].path[y] = NULL;
 		e->data[j].nb_path = e->data[i].nb_path;
 	}
@@ -65,10 +62,9 @@ int		path_manage(t_lem *e, int i, int j)
 	return (0);
 }
 
-int		path_copy(t_lem *e, int i, int j)
+int		path_copy(t_lem *e, int i, int j, int l)
 {
 	int		k;
-	int		l;
 
 	if (i == 0)
 	{
@@ -82,7 +78,6 @@ int		path_copy(t_lem *e, int i, int j)
 		k = 0;
 	else
 		k = e->data[j].nb_path - e->data[i].nb_path;
-	l = 0;
 	while (k < e->data[j].nb_path)
 	{
 		if (!(e->data[j].path[k] = ft_inttabjoin(e->data[i].path[l],
@@ -114,32 +109,14 @@ void	make_floor(t_lem *e)
 			if (e->data[e->data[i].links[j]].floor == -1)
 			{
 				e->data[e->data[i].links[j]].floor = e->data[i].floor + 1;
-				if (f <  e->data[e->data[i].links[j]].floor)
+				if (f < e->data[e->data[i].links[j]].floor)
 					f = e->data[e->data[i].links[j]].floor;
 			}
 		}
 	}
 	e->data[e->nb_room - 1].floor = f + 1;
 }
-/*
-int		update_path(t_lem *e, int i)
-{
-	int j;
 
-	j = -1;
-	while (++j < e->data[i].nb_links)
-	{
-		if (e->data[i].floor <= e->data[e->data[i].links[j]].floor)
-		{
-			if (path_manage(e, i, e->data[i].links[j]))
-				return (-1);
-			if (path_copy(e, i, e->data[i].links[j]))
-				return (-1);
-		}
-	}
-	return (0);
-}
-*/
 int		algo_main(t_lem *e)
 {
 	int		i;
@@ -154,14 +131,10 @@ int		algo_main(t_lem *e)
 		{
 			if (e->data[i].floor <= e->data[e->data[i].links[j]].floor)
 			{
-				if (path_manage(e, i, e->data[i].links[j]))
+				if (path_manage(e, i, e->data[i].links[j], -1))
 					return (-1);
-				if (path_copy(e, i, e->data[i].links[j]))
+				if (path_copy(e, i, e->data[i].links[j], 0))
 					return (-1);
-	//			if (e->data[i].floor == e->data[e->data[i].links[j]].floor
-	//					&& e->data[i].links[j] < i)
-	//				if (update_path(e, e->data[i].links[j]) == -1)
-	//					return (-1);
 			}
 		}
 	}

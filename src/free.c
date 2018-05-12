@@ -6,7 +6,7 @@
 /*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/24 20:29:21 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/11 21:00:09 by magaspar    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/12 12:24:52 by nbettach    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -49,4 +49,17 @@ void			free_env(t_lem **e)
 	ft_strdel(&(*e)->line);
 	ft_strdel(&(*e)->save);
 	free(*e);
+}
+
+void		ft_free_tmp(char **tmp)
+{
+	int i;
+
+	i = 0;
+	while (tmp[i])
+	{
+		ft_strdel(&tmp[i]);
+		i++;
+	}
+	free(tmp);
 }

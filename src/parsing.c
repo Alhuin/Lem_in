@@ -6,7 +6,7 @@
 /*   By: nbettach <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/11 10:28:43 by nbettach     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/11 17:45:22 by magaspar    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/12 12:23:04 by nbettach    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -48,13 +48,40 @@ static int			deal_room(char **t, t_lem *e)
 	return (0);
 }
 
+int					ft_parse_next(t_lem *e, char **t, int links)
+{
+	if (!e->stop++)
+	{
+		e->nb_ants = ft_atoi(e->line);
+		if (!ft_str_is_num(e->line) || e->nb_ants <= 0)
+			return (-1);
+	}
+	else if (links == 0 && (t = ft_get_room(e)))
+	{
+		if (deal_room(t, e) == -1)
+			return (-1);
+	}
+	else if (e->nb_room > 0 && (t = ft_get_links(e)))
+	{
+		if (deal_links(t, e) == -1)
+			return (-2);
+	}
+	else
+	{
+		if (links > 0)
+			return (-2);
+		else
+			return (-1);
+	}
+	return (0);
+}
+
 int					ft_parse(t_lem *e, char **t)
 {
-	int		links;
 	int		ret;
+	int		tmp;
 
 	ret = 0;
-	links = 0;
 	while ((ret = get_next_line(0, &e->line)))
 	{
 		if (ret == -2)
@@ -66,28 +93,11 @@ int					ft_parse(t_lem *e, char **t)
 			else if (ret == -2)
 				return (-2);
 		}
-		else if (!e->stop++)
-		{
-			e->nb_ants = ft_atoi(e->line);
-			if (!ft_str_is_num(e->line) || e->nb_ants <= 0)
-				return (-1);
-		}
-		else if (links == 0 && (t = ft_get_room(e)))
-		{
-			if (deal_room(t, e) == -1)
-				return (-1);
-		}
-		else if (e->nb_room > 0 && (t = ft_get_links(e)))
-		{
-			if (deal_links(t, e) == -1)
-				return (-2);
-		}
 		else
 		{
-			if (links > 0)
-				return (-2);
-			else
-				return (-1);
+			tmp = ft_parse_next(e, t, 0);
+			if (tmp < 0)
+				return (tmp);
 		}
 		e->save = ft_strjoin(ft_strjoin(e->save, e->line, 1), "\n", 1);
 		ft_strdel(&e->line);

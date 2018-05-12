@@ -6,7 +6,7 @@
 /*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/25 00:15:42 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/11 16:57:55 by magaspar    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/12 12:24:30 by nbettach    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -69,15 +69,16 @@ void			ft_intdel(int **as);
 int				data_sort(t_lem *e, int *equiv);
 void			data_scan(t_lem *e, int *equiv);
 int				ft_inttablen(int *tab);
-int				algo_next(t_lem *e);
+int				algo_next(t_lem *e, int i, int j);
 int				**count_plays(int **paths, int **poss, t_lem *e, int index);
 void			sort_all_path(t_lem *e, int **paths);
 int				move_ants(t_lem *e, int play);
-void			print_inttab(int *s1);
 int				data_to_tmp(int a, int b, t_room *tmp, t_lem *e);
 int				tmp_to_data(int a, int b, t_room *tmp, t_lem *e);
 int				ft_sorting(t_lem *e);
-int		*ft_inttabjoin(int *s1, int *s2);
+int				*ft_inttabjoin(int *s1, int *s2);
+int				check_double(t_lem *e);
+void			ft_free_tmp(char **tmp);
 
 
 
@@ -95,4 +96,8 @@ void			ft_print_allpath(t_lem *e);
 void			ft_print_path(t_lem *e, int j, int i);
 void			ft_print_dataname(t_lem *e);
 void			ft_print_last(t_lem *e);
+void			print_inttab(int *s1);
+
+
+
 #endif

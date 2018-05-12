@@ -6,7 +6,7 @@
 /*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/04 18:23:25 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/12 11:46:24 by nbettach    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/12 15:51:15 by jjanin-r    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -54,36 +54,12 @@ int		**check_swap_interval(int **to_play)
 	return (to_play);
 }
 
-int		**swap_path(int **poss, int i, int j, int k)
+int		**len_of_one(t_lem *e, int **poss, int index, int **to_play)
 {
-	int tmp;
-
-	tmp = poss[i][j];
-	poss[i][j] = poss[i][k];
-	poss[i][k] = tmp;
-	return (poss);
-}
-
-void	sort_all_path(t_lem *e, int **paths)
-{
-	int i;
-	int j;
-	int k;
-
-	k = 0;
-	i = -1;
-	while (++i < e->nb_path)
-	{
-		j = 0;
-		while (e->all_path[i][j + 1] != -1)
-		{
-			k = j + 1;
-			if (ft_inttablen(paths[e->all_path[i][j]]) >
-					ft_inttablen(paths[e->all_path[i][k]]))
-				e->all_path = swap_path(e->all_path, i, j, k);
-			j++;
-		}
-	}
+	to_play[0][1] = e->nb_ants;
+	to_play[0][0] = to_play[0][1] +
+		ft_inttablen(e->data[e->nb_room - 1].path[poss[index][0]]);
+	return (to_play);
 }
 
 int		**count_plays(int **paths, int **poss, t_lem *e, int index)
@@ -101,11 +77,7 @@ int		**count_plays(int **paths, int **poss, t_lem *e, int index)
 		if (!(to_play[i] = malloc(sizeof(int) * 2)))
 			return (NULL);
 	if (len == 1)
-	{
-		to_play[0][1] = e->nb_ants;
-		to_play[0][0] = to_play[0][1] + ft_inttablen(paths[poss[index][0]]);
-		return (to_play);
-	}
+		return (len_of_one(e, poss, index, to_play));
 	i = -1;
 	while (poss[index][++i] != -1)
 		to_play[i][0] = ft_inttablen(paths[poss[index][i]]);

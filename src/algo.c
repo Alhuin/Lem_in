@@ -6,7 +6,7 @@
 /*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/25 00:16:52 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/12 15:26:07 by nbettach    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/12 15:51:07 by jjanin-r    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -81,7 +81,7 @@ int		path_copy(t_lem *e, int i, int j, int l)
 	while (k < e->data[j].nb_path)
 	{
 		if (!(e->data[j].path[k] = ft_inttabjoin(e->data[i].path[l],
-				e->data[j].path[k])))
+				e->data[j].path[k], 0)))
 			return (-1);
 		if (!(e->data[j].path[k] = ft_inttabadd(e->data[j].path[k], i)))
 			return (-1);

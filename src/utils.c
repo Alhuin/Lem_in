@@ -6,7 +6,7 @@
 /*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/25 00:34:01 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/12 13:15:23 by nbettach    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/12 16:16:19 by jjanin-r    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -41,37 +41,6 @@ int				*ft_inttabdup(int *s1)
 	while (s1[i] != -1)
 		s2[j++] = s1[i++];
 	return (s2);
-}
-
-int				*ft_inttabjoin(int *s1, int *s2)
-{
-	int		i;
-	int		j;
-	int		k;
-	int		*new;
-
-	if (s1 == NULL && s2 == NULL)
-	{
-		new = malloc(sizeof(int));
-		new[0] = -1;
-		return (new);
-	}
-	else if (s1 == NULL)
-		return (ft_inttabdup(s2));
-	else if (s2 == NULL)
-		return (ft_inttabdup(s1));
-	k = ft_inttablen(s1) + ft_inttablen(s2);
-	if (!(new = malloc(sizeof(int) * (k + 1))))
-		return (NULL);
-	i = -1;
-	j = -1;
-	while (s1[++i] != -1)
-		new[++j] = s1[i];
-	i = -1;
-	while (s2[++i] != -1)
-		new[++j] = s2[i];
-	new[j] = -1;
-	return (new);
 }
 
 int				ft_diese(t_lem *e)
@@ -118,5 +87,6 @@ int				init_env(t_lem **e)
 	(*e)->nb_path = 0;
 	(*e)->all_path = NULL;
 	(*e)->play = NULL;
+	(*e)->ants_arrived = 0;
 	return (0);
 }

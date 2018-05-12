@@ -6,7 +6,7 @@
 /*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/25 00:29:45 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/12 15:28:19 by nbettach    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/12 16:28:33 by jjanin-r    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -58,19 +58,6 @@ int					check_start_end(t_lem *e)
 		}
 	}
 	return (0);
-}
-
-void				ft_free_play(int **to_free)
-{
-	int i;
-
-	i = -1;
-	if (to_free == NULL)
-		return ;
-	while (to_free[++i] != NULL)
-		ft_intdel(&to_free[i]);
-	free(to_free);
-	to_free = NULL;
 }
 
 int					**save_play(int **tmp)
@@ -140,7 +127,8 @@ int					main(void)
 		sort_all_path(e, e->data[e->nb_room - 1].path);
 		make_play(e);
 		ft_printf("%s\n", e->save);
-		move_ants(e, e->poss_to_play);
+		move_ants(e, e->poss_to_play,
+				ft_inttablen(e->all_path[e->poss_to_play]), 1);
 	}
 	free_env(&e);
 	return (0);

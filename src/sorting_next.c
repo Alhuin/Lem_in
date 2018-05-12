@@ -6,7 +6,7 @@
 /*   By: jjanin-r <jjanin-r@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/25 00:17:28 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/11 16:50:27 by magaspar    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/12 15:54:52 by jjanin-r    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -47,4 +47,65 @@ int			tmp_to_data(int a, int b, t_room *tmp, t_lem *e)
 	e->data[b].dist_s = tmp[a].dist_s;
 	e->data[b].dist_e = tmp[a].dist_e;
 	return (0);
+}
+
+int			**swap_path(int **poss, int i, int j, int k)
+{
+	int tmp;
+
+	tmp = poss[i][j];
+	poss[i][j] = poss[i][k];
+	poss[i][k] = tmp;
+	return (poss);
+}
+
+void		sort_all_path(t_lem *e, int **paths)
+{
+	int i;
+	int j;
+	int k;
+
+	k = 0;
+	i = -1;
+	while (++i < e->nb_path)
+	{
+		j = 0;
+		while (e->all_path[i][j + 1] != -1)
+		{
+			k = j + 1;
+			if (ft_inttablen(paths[e->all_path[i][j]]) >
+					ft_inttablen(paths[e->all_path[i][k]]))
+				e->all_path = swap_path(e->all_path, i, j, k);
+			j++;
+		}
+	}
+}
+
+int			*ft_inttabjoin(int *s1, int *s2, int i)
+{
+	int		j;
+	int		*new;
+
+	if (s1 == NULL && s2 == NULL)
+	{
+		new = malloc(sizeof(int));
+		new[0] = -1;
+		return (new);
+	}
+	else if (s1 == NULL)
+		return (ft_inttabdup(s2));
+	else if (s2 == NULL)
+		return (ft_inttabdup(s1));
+	i = ft_inttablen(s1) + ft_inttablen(s2);
+	if (!(new = malloc(sizeof(int) * (i + 1))))
+		return (NULL);
+	i = -1;
+	j = -1;
+	while (s1[++i] != -1)
+		new[++j] = s1[i];
+	i = -1;
+	while (s2[++i] != -1)
+		new[++j] = s2[i];
+	new[j] = -1;
+	return (new);
 }

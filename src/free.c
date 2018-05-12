@@ -6,7 +6,7 @@
 /*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/24 20:29:21 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/12 15:51:18 by jjanin-r    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/12 16:44:30 by nbettach    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -56,12 +56,15 @@ void			ft_free_tmp(char **tmp)
 	int i;
 
 	i = 0;
+	if (tmp == NULL)
+		return ;
 	while (tmp[i])
 	{
 		ft_strdel(&tmp[i]);
 		i++;
 	}
 	free(tmp);
+	tmp = NULL;
 }
 
 void			ft_free_play(int **to_free)

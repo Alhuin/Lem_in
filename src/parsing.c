@@ -6,7 +6,7 @@
 /*   By: nbettach <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/11 10:28:43 by nbettach     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/12 15:51:28 by jjanin-r    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/12 16:56:20 by nbettach    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,7 +22,10 @@ static int			deal_links(char **t, t_lem *e)
 	j = 0;
 	while (t[++i])
 		if (ft_check_room_name(e, t[i], 2) == -1)
+		{
+			ft_free_tmp(t);
 			return (-1);
+		}
 	if (i != 2)
 		e->error = 1;
 	i = 0;
@@ -39,11 +42,20 @@ static int			deal_links(char **t, t_lem *e)
 static int			deal_room(char **t, t_lem *e)
 {
 	if (ft_check_room_name(e, t[0], 1) == -1)
+	{
+		ft_free_tmp(t);
 		return (-1);
+	}
 	if (ft_check_room_coord(e, ft_atoi(t[1]), ft_atoi(t[2])) == -1)
+	{
+		ft_free_tmp(t);
 		return (-1);
+	}
 	if (ft_init_room(t[0], e, ft_atoi(t[1]), ft_atoi(t[2])) == -1)
+	{
+		ft_free_tmp(t);
 		return (-1);
+	}
 	ft_free_tmp(t);
 	return (0);
 }

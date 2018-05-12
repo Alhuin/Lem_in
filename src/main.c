@@ -6,7 +6,7 @@
 /*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/25 00:29:45 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/12 16:28:33 by jjanin-r    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/12 17:06:54 by nbettach    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -52,7 +52,11 @@ int					check_start_end(t_lem *e)
 			ft_printf("%s\n", e->save);
 			j = 0;
 			while (++j <= e->nb_ants)
-				ft_printf("L%d-%s ", j, e->data[e->end].name);
+			{
+				ft_printf("L%d-%s", j, e->data[e->end].name);
+				if (j < e->nb_ants)
+					ft_printf(" ");
+			}
 			ft_printf("\n");
 			return (1);
 		}

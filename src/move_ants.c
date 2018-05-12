@@ -6,7 +6,7 @@
 /*   By: dguelpa <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/07 16:00:01 by dguelpa      #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/12 16:27:42 by jjanin-r    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/12 17:10:15 by nbettach    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -46,7 +46,6 @@ int		move_ants(t_lem *e, int play, int nb_paths, int a)
 	int	j;
 	int	path_len;
 	int	*path;
-	int	turn = 0;
 
 	while (e->ants_arrived < e->nb_ants)
 	{
@@ -65,8 +64,6 @@ int		move_ants(t_lem *e, int play, int nb_paths, int a)
 			}
 		}
 		ft_printf("\n");
-		turn++;
 	}
-	dprintf(2, "%d ANTS ARRIVED IN %d TURNS", e->ants_arrived, turn);
 	return (0);
 }

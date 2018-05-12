@@ -6,7 +6,7 @@
 /*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/04 18:23:25 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/12 11:46:24 by nbettach    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/12 13:44:32 by jjanin-r    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -86,6 +86,14 @@ void	sort_all_path(t_lem *e, int **paths)
 	}
 }
 
+int		**len_one(t_lem *e, int **to_play, int **poss, int index)
+{
+	to_play[0][1] = e->nb_ants;
+	to_play[0][0] = to_play[0][1] +
+		ft_inttablen(e->data[e->nb_room - 1].path[poss[index][0]]);
+	return (to_play);
+}
+
 int		**count_plays(int **paths, int **poss, t_lem *e, int index)
 {
 	int	**to_play;
@@ -101,11 +109,7 @@ int		**count_plays(int **paths, int **poss, t_lem *e, int index)
 		if (!(to_play[i] = malloc(sizeof(int) * 2)))
 			return (NULL);
 	if (len == 1)
-	{
-		to_play[0][1] = e->nb_ants;
-		to_play[0][0] = to_play[0][1] + ft_inttablen(paths[poss[index][0]]);
-		return (to_play);
-	}
+		return (len_one(e, to_play, poss, index));
 	i = -1;
 	while (poss[index][++i] != -1)
 		to_play[i][0] = ft_inttablen(paths[poss[index][i]]);

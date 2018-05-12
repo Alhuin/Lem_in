@@ -6,7 +6,7 @@
 /*   By: dguelpa <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/07 16:00:01 by dguelpa      #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/12 11:54:25 by nbettach    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/12 13:56:21 by jjanin-r    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,6 +23,7 @@ int		move_ants(t_lem *e, int play)
 	int	path_len;
 	int	*path;
 	int	turn = 0;
+	int	played = 0;
 
 	nb_paths = ft_inttablen(e->all_path[play]);
 	ants_arrived = 0;
@@ -37,31 +38,37 @@ int		move_ants(t_lem *e, int play)
 			i = -1;
 			while (++i <= path_len)
 			{
+				played = 0;
 				if (i == path_len)
 				{
 					if (e->play[j][1] > 0)
 					{
-						ft_printf("L%d-%s ", a, e->data[path[i - 1]].name);
+						ft_printf("L%d-%s", a, e->data[path[i - 1]].name);
 						e->data[path[i - 1]].ant = a++;
 						e->play[j][1]--;
 						if (e->nb_room == 2)
 							ants_arrived++;
+						played++;
 					}
 				}
 				else if (e->data[path[i]].ant != 0 && i)
 				{
 					if (i == 1)
 					{
-						ft_printf("L%d-%s ", e->data[path[i]].ant, e->data[0].name);
+						ft_printf("L%d-%s", e->data[path[i]].ant, e->data[0].name);
 						ants_arrived++;
+						played++;
 					}
 					else
 					{
-						ft_printf("L%d-%s ", e->data[path[i]].ant, e->data[path[i - 1]].name);
+						ft_printf("L%d-%s", e->data[path[i]].ant, e->data[path[i - 1]].name);
 						e->data[path[i - 1]].ant = e->data[path[i]].ant;
+						played++;
 					}
 					e->data[path[i]].ant = 0;
 				}
+			if (played && i + 1 <= path_len && j + 1 < nb_paths)
+				ft_printf(" ");
 			}
 		}
 		ft_printf("\n");

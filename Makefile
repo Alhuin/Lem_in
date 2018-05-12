@@ -6,7 +6,7 @@
 #    By: nbettach <marvin@le-101.fr>                +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/03/17 13:51:41 by nbettach     #+#   ##    ##    #+#        #
-#    Updated: 2018/05/12 15:26:17 by nbettach    ###    #+. /#+    ###.fr      #
+#    Updated: 2018/05/12 17:15:44 by nbettach    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -23,7 +23,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	make -C libft
-	gcc -g -Wall -Wextra -Werror $(SRC) -L. libft/libftprintf.a -o $(NAME)
+	gcc -Wall -Wextra -Werror $(SRC) -L. libft/libftprintf.a -o $(NAME)
 
 %.o : %.c
 	gcc -Wall -Werror -Wextra -o $@ -c $< -I $(INC)

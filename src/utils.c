@@ -6,7 +6,7 @@
 /*   By: jjanin-r <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/04/25 00:34:01 by jjanin-r     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/12 16:16:19 by jjanin-r    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/12 17:13:42 by nbettach    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -51,8 +51,6 @@ int				ft_diese(t_lem *e)
 			e->start_end = 1;
 		else if (!ft_strcmp(e->line, "##end"))
 			e->start_end = 2;
-		else
-			return (-2);
 		if (e->start_end == 1 && e->start != -1)
 			return (-1);
 		else if (e->start_end == 2 && e->end != -1)

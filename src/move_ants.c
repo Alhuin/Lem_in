@@ -6,7 +6,7 @@
 /*   By: nbettach <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/05/12 17:16:49 by nbettach     #+#   ##    ##    #+#       */
-/*   Updated: 2018/05/12 17:16:53 by nbettach    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/05/13 14:03:41 by jjanin-r    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -28,7 +28,7 @@ void	move_forward(t_lem *e, int i, int *path)
 	e->data[path[i]].ant = 0;
 }
 
-void	send_ant(t_lem *e, int j, int a, int room)
+int		send_ant(t_lem *e, int j, int a, int room)
 {
 	if (e->play[j][1] > 0)
 	{
@@ -38,6 +38,7 @@ void	send_ant(t_lem *e, int j, int a, int room)
 		if (e->nb_room == 2)
 			e->ants_arrived++;
 	}
+	return (a);
 }
 
 int		move_ants(t_lem *e, int play, int nb_paths, int a)
@@ -58,7 +59,7 @@ int		move_ants(t_lem *e, int play, int nb_paths, int a)
 			while (++i <= path_len)
 			{
 				if (i == path_len)
-					send_ant(e, j, a, path[i - 1]);
+					a = send_ant(e, j, a, path[i - 1]);
 				else if (e->data[path[i]].ant != 0 && i)
 					move_forward(e, i, path);
 			}

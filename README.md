@@ -102,7 +102,7 @@ L3-1
 
 #### Télécharger et compiler Lem-in
 ```
-git clone https://github.com/Alhuin/Lem_in-Brothers.git ~/Lem_in
+git clone https://github.com/Alhuin/Lem_in.git ~/Lem_in
 cd ~/Lem_in
 make
 ```
